@@ -27,12 +27,12 @@ public class AuthRunner implements ApplicationRunner {
 
         Optional<Customer> adminUser = customerService.findByUsername("admin");
         if (adminUser.isEmpty()) {
-            customerService.register(new CustomerRegisterRequest("admin", "adminpwd", "adminn", "admins", LocalDate.of(2000, 1, 1), "3332327890", Set.of(Role.ROLE_ADMIN)));
+            customerService.registerMain("admin", "adminpwd", Set.of(Role.ROLE_ADMIN));
         }
 
         Optional<Customer> trainerUser = customerService.findByUsername("trainer");
         if (trainerUser.isEmpty()) {
-            customerService.register(new CustomerRegisterRequest("trainer", "trainerpwd", "trainern", "trainers", LocalDate.of(2000, 1, 1), "3452327890", Set.of(Role.ROLE_PERSONALTRAINER)));
+            customerService.registerMain("trainer", "trainerpwd", Set.of(Role.ROLE_PERSONALTRAINER));
         }
 
         Optional<Customer> customerUser = customerService.findByUsername("customer");

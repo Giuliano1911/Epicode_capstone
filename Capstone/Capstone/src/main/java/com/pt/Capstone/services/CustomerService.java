@@ -3,6 +3,7 @@ package com.pt.Capstone.services;
 import com.pt.Capstone.entities.Customer;
 import com.pt.Capstone.enums.Role;
 import com.pt.Capstone.repositories.CustomerRepository;
+import com.pt.Capstone.requests.CustomerPutRequest;
 import com.pt.Capstone.requests.CustomerRegisterRequest;
 import com.pt.Capstone.responses.AuthResponse;
 import com.pt.Capstone.responses.CustomerResponse;
@@ -21,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -69,14 +71,31 @@ public class CustomerService {
         return customer;
     }
 
+    public Customer customerFromPutRequest(@Valid CustomerPutRequest customerPutRequest) {
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerPutRequest, customer);
+        return customer;
+    }
+
     public void register(@Valid CustomerRegisterRequest customerRegisterRequest) {
         if (customerRepository.existsByUsername(customerRegisterRequest.getUsername())) {
             throw new EntityExistsException("User with username: " + customerRegisterRequest.getUsername() + " already exists.");
         }
-        Customer customer = customerFromRegisterRequest(customerRegisterRequest);
-        if (customerRegisterRequest.getRoles() == null) {
-            customerRegisterRequest.setRoles(Set.of(Role.ROLE_CUSTOMER));
+        if (customerRepository.existsByPhoneNumber(customerRegisterRequest.getPhoneNumber())) {
+            throw new EntityExistsException("User with phone number: " + customerRegisterRequest.getPhoneNumber() + " already exists.");
         }
+        Customer customer = customerFromRegisterRequest(customerRegisterRequest);
+        customer.setRoles(Set.of(Role.ROLE_CUSTOMER));
+        customerRepository.save(customer);
+    }
+
+    public void registerMain(String username, String password, Set<Role> roles) {
+        if (customerRepository.existsByUsername(username))
+            throw new EntityExistsException("User with username: " + username + " already exists.");
+        Customer customer = new Customer();
+        customer.setUsername(username);
+        customer.setPassword(passwordEncoder.encode(password));
+        customer.setRoles(roles);
         customerRepository.save(customer);
     }
 
@@ -95,13 +114,47 @@ public class CustomerService {
         }
     }
 
-    public CustomerResponse update(Long id, @Valid CustomerRegisterRequest customerRegisterRequest) {
+    public CustomerResponse update(Long id, @Valid CustomerPutRequest customerPutRequest) {
         if (id == 1 || id == 2) {
             throw new SecurityException("User with id: " + id + " cannot be updated.");
         }
-        Customer customer = customerFromRegisterRequest(customerRegisterRequest);
+        if (customerRepository.existsByPhoneNumber(customerPutRequest.getPhoneNumber())) {
+            throw new EntityExistsException("User with phone number: " + customerPutRequest.getPhoneNumber() + " already exists.");
+        }
+        Customer customer = customerFromPutRequest(customerPutRequest);
         customer.setId(id);
         customer.setRoles(Set.of(Role.ROLE_CUSTOMER));
+        customer.setUsername(customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found")).getUsername());
+        customer.setPassword(customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found")).getPassword());
+        return customerResponseFromEntity(customerRepository.save(customer));
+    }
+
+    public void delete(Long id) {
+        if (id == 1 || id == 2) {
+            throw new SecurityException("User with id: " + id + " cannot be deleted.");
+        }
+        customerRepository.deleteById(id);
+    }
+
+    public CustomerResponse updatePassword(Long id, String password, String oldPassword) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
+        if (!passwordEncoder.matches(oldPassword, customer.getPassword()))
+            throw new SecurityException("Old password is incorrect.");
+        customer.setPassword(passwordEncoder.encode(password));
+        return customerResponseFromEntity(customerRepository.save(customer));
+    }
+
+    public CustomerResponse updateUsername(Long id, String username) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
+        if (customerRepository.existsByUsername(username))
+            throw new EntityExistsException("User with username: " + username + " already exists.");
+        customer.setUsername(username);
+        return customerResponseFromEntity(customerRepository.save(customer));
+    }
+
+    public CustomerResponse updateLastPaymentDate(Long id, LocalDate lastPaymentDate) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
+        customer.setLastPaymentDate(lastPaymentDate);
         return customerResponseFromEntity(customerRepository.save(customer));
     }
 }

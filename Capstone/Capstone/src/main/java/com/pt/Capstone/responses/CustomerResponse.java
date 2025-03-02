@@ -23,6 +23,4 @@ public class CustomerResponse {
 
     private LocalDate lastPaymentDate;
 
-    private String gender;
-
 }

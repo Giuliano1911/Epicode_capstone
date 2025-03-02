@@ -1,7 +1,6 @@
 package com.pt.Capstone.controllers;
 
-import com.pt.Capstone.requests.CustomerRegisterRequest;
-import com.pt.Capstone.requests.LoginRequest;
+import com.pt.Capstone.requests.*;
 import com.pt.Capstone.responses.AuthResponse;
 import com.pt.Capstone.responses.CustomerResponse;
 import com.pt.Capstone.services.CustomerService;
@@ -13,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -47,13 +47,54 @@ public class CustomerController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('PERSONALTRAINER')")
     public List<CustomerResponse> findAll() {
         return customerService.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('PERSONALTRAINER')")
     public CustomerResponse findById(@PathVariable Long id) {
         return customerService.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('CUSTOMER' , 'PERSONALTRAINER')")
+    public CustomerResponse update(@PathVariable Long id, @RequestBody @Valid CustomerPutRequest customerPutRequest) {
+        return customerService.update(id, customerPutRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('PERSONALTRAINER')")
+    public void delete(@PathVariable Long id) {
+        customerService.delete(id);
+    }
+
+    @PutMapping("/password/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('CUSTOMER')")
+    public CustomerResponse updatePassword(@PathVariable Long id, @RequestBody @Valid PasswordRequest passwordRequest) {
+        String password = passwordRequest.getPassword();
+        String oldPassword = passwordRequest.getOldPassword();
+        return customerService.updatePassword(id, password, oldPassword);
+    }
+
+    @PutMapping("/username/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('CUSTOMER')")
+    public CustomerResponse updateUsername(@PathVariable Long id, @RequestBody UsernameRequest usernameRequest) {
+        String username = usernameRequest.getUsername();
+        return customerService.updateUsername(id, username);
+    }
+
+    @PutMapping("/lastPaymentDate/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('PERSONALTRAINER')")
+    public CustomerResponse updateLastPaymentDate(@PathVariable Long id, @RequestBody LastPaymentRequest lastPaymentRequest) {
+        LocalDate lastPaymentDate = lastPaymentRequest.getLastPaymentDate();
+        return customerService.updateLastPaymentDate(id, lastPaymentDate);
     }
 }

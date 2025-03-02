@@ -22,16 +22,13 @@ public class Customer {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String surname;
 
-    @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    @Column(nullable = false, unique = true, length = 10)
+    @Column(unique = true, length = 10)
     private String phoneNumber;
 
     private LocalDate lastPaymentDate;

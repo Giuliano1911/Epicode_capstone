@@ -12,13 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerRegisterRequest {
-
-    @NotBlank(message = "Username is required")
-    private String username;
-
-    @NotBlank(message = "Password is required")
-    private String password;
+public class CustomerPutRequest {
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -32,5 +26,4 @@ public class CustomerRegisterRequest {
     private String phoneNumber;
 
     private Set<Role> roles;
-
 }
