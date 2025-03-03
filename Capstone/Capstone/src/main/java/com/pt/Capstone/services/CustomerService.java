@@ -7,7 +7,7 @@ import com.pt.Capstone.requests.CustomerPutRequest;
 import com.pt.Capstone.requests.CustomerRegisterRequest;
 import com.pt.Capstone.responses.AuthResponse;
 import com.pt.Capstone.responses.CustomerResponse;
-import com.pt.Capstone.utils.JwtTokenUtil;
+import com.pt.Capstone.components.JwtTokenUtil;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

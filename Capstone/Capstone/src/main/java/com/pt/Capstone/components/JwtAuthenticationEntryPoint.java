@@ -1,4 +1,4 @@
-package com.pt.Capstone.utils;
+package com.pt.Capstone.components;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

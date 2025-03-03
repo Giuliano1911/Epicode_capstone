@@ -2,9 +2,8 @@ package com.pt.Capstone.configs;
 
 import com.pt.Capstone.requests.JwtRequestFilter;
 import com.pt.Capstone.services.CustomUserDetailsService;
-import com.pt.Capstone.utils.JwtAuthenticationEntryPoint;
+import com.pt.Capstone.components.JwtAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
