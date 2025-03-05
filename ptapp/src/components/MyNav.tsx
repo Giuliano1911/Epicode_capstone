@@ -26,34 +26,53 @@ const MyNav = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="text-center ms-auto">
-              <a
+              <Link
                 className={
                   location.pathname === '/'
                     ? 'nav-link active greentext px-4'
                     : 'nav-link greentext opacity-75 px-4'
                 }
-                href="#"
+                to={'/'}
               >
                 HOME
-              </a>
-              <a
-                className="nav-link greentext opacity-75 px-4"
-                href="#presentation"
-              >
-                CHI SONO
-              </a>
-              <a className="nav-link greentext opacity-75 px-4" href="#prices">
-                TARIFFE
-              </a>
-              <a className="nav-link greentext opacity-75 px-4" href="#reviews">
-                RECENSIONI
-              </a>
-              <a className="nav-link greentext opacity-75 px-4" href="#form">
-                SCRIVIMI
-              </a>
-              <a className="nav-link greentext opacity-75 px-4" href="#contact">
-                CONTATTI
-              </a>
+              </Link>
+              {location.pathname === '/' && (
+                <a
+                  className="nav-link greentext opacity-75 px-4"
+                  href="#presentation"
+                >
+                  CHI SONO
+                </a>
+              )}
+              {location.pathname === '/' && (
+                <a
+                  className="nav-link greentext opacity-75 px-4"
+                  href="#prices"
+                >
+                  TARIFFE
+                </a>
+              )}
+              {location.pathname === '/' && (
+                <a
+                  className="nav-link greentext opacity-75 px-4"
+                  href="#reviews"
+                >
+                  RECENSIONI
+                </a>
+              )}
+              {location.pathname === '/' && (
+                <a className="nav-link greentext opacity-75 px-4" href="#form">
+                  SCRIVIMI
+                </a>
+              )}
+              {location.pathname === '/' && (
+                <a
+                  className="nav-link greentext opacity-75 px-4"
+                  href="#contact"
+                >
+                  CONTATTI
+                </a>
+              )}
               <Link
                 className={
                   location.pathname === '/login'

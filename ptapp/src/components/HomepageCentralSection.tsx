@@ -371,7 +371,7 @@ function HomepageCentralSection() {
         <Col className="col-10">
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className=" text-uppercase ms-2">
+              <Form.Label className=" text-uppercase ms-2 fw-bold">
                 * Indirizzo Email
               </Form.Label>
               <Form.Control
@@ -385,7 +385,9 @@ function HomepageCentralSection() {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Label className=" text-uppercase ms-2">* Nome</Form.Label>
+              <Form.Label className=" text-uppercase ms-2 fw-bold">
+                * Nome
+              </Form.Label>
               <Form.Control
                 className="py-3"
                 type="text"
@@ -397,7 +399,7 @@ function HomepageCentralSection() {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicSurname">
-              <Form.Label className=" text-uppercase ms-2">
+              <Form.Label className=" text-uppercase ms-2 fw-bold">
                 * Cognome
               </Form.Label>
               <Form.Control
@@ -411,7 +413,7 @@ function HomepageCentralSection() {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicText">
-              <Form.Label className=" text-uppercase ms-2">
+              <Form.Label className=" text-uppercase ms-2 fw-bold">
                 * Come posso aiutarti?
               </Form.Label>
               <Form.Control
