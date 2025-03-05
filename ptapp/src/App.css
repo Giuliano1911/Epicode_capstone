@@ -27,6 +27,24 @@ h1 {
   width: 75px;
 }
 
+.propic {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+#reviews p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#reviews .card {
+  height: 175px;
+}
+
 #presentation,
 #form {
   background: greenyellow;

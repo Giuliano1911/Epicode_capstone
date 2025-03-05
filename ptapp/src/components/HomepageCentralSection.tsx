@@ -172,8 +172,8 @@ function HomepageCentralSection() {
           </h4>
         </Col>
         <Col className="col-12 col-lg-4 mb-5 mb-lg-0">
-          <Card className=" p-3 mx-4 h-100">
-            <Card.Img className="rounded" src={basic} />
+          <Card className=" p-3 mx-4 h-100 rounded-4">
+            <Card.Img className="rounded-4" src={basic} />
             <Card.Body>
               <Card.Title className="fs-3 my-3">Basic Plan</Card.Title>
               <Row className="my-2">
@@ -213,8 +213,8 @@ function HomepageCentralSection() {
           </Card>
         </Col>
         <Col className="col-12 col-lg-4  mb-5 mb-lg-0">
-          <Card className=" p-3 mx-4 h-100">
-            <Card.Img className="rounded" src={pro} />
+          <Card className=" p-3 mx-4 h-100 rounded-4">
+            <Card.Img className="rounded-4" src={pro} />
             <Card.Body>
               <Card.Title className="fs-3 my-3">Pro Plan</Card.Title>
               <Row className="my-2">
@@ -249,8 +249,8 @@ function HomepageCentralSection() {
           </Card>
         </Col>
         <Col className="col-12 col-lg-4 ">
-          <Card className=" p-3 mx-4 h-100">
-            <Card.Img className="rounded" src={elite} />
+          <Card className=" p-3 mx-4 h-100 rounded-4">
+            <Card.Img className="rounded-4" src={elite} />
             <Card.Body>
               <Card.Title className="fs-3 my-3">Elite Plan</Card.Title>
               <Row className="my-2">
@@ -431,7 +431,7 @@ function HomepageCentralSection() {
               <Form.Check
                 required
                 label="Ho letto la Privacy Policy e acconsento alla memorizzazione dei dati secondo il regolamento n. 679/2016, GDPR."
-                feedback="You must agree before submitting."
+                feedback="Devi accettare per proseguire."
                 feedbackType="invalid"
               />
             </Form.Group>
@@ -444,7 +444,7 @@ function HomepageCentralSection() {
           </Form>
         </Col>
       </Row>
-      <Row>
+      <Row className=" bg-black">
         <MyFooter />
       </Row>
     </>

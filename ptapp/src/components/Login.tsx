@@ -1,5 +1,5 @@
 function Login() {
-  return <div></div>
+  return <></>
 }
 
 export default Login

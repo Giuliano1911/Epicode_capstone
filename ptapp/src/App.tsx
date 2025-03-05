@@ -4,7 +4,6 @@ import 'react-multi-carousel/lib/styles.css'
 
 import './App.css'
 import Homepage from './components/Homepage'
-import MyFooter from './components/MyFooter'
 import NotFound from './components/NotFound'
 import Login from './components/Login'
 
@@ -16,7 +15,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <MyFooter />
     </BrowserRouter>
   )
 }
