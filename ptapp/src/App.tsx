@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-multi-carousel/lib/styles.css'
 
 import './App.css'
 import Homepage from './components/Homepage'

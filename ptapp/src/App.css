@@ -27,7 +27,8 @@ h1 {
   width: 75px;
 }
 
-#presentation {
+#presentation,
+#form {
   background: greenyellow;
   background: linear-gradient(
     147deg,

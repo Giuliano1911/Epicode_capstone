@@ -1,39 +1,41 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router'
 
-import logo from '../assets/whiteLogo.png'
+import whiteLogo from '../assets/whiteLogo.png'
 
 const MyNav = () => {
   const location = useLocation()
+
   return (
     <header>
       <Navbar
         collapseOnSelect
-        expand="lg"
+        expand="xl"
         bg="black"
         data-bs-theme="black"
         sticky="top"
+        className=" position-fixed w-100"
       >
         <Container fluid>
           <Link to={'/'} className="navbar-brand">
             <div className=" d-flex align-items-center">
-              <img className="logo" src={logo} />
+              <img className="logo" src={whiteLogo} />
               <h4 className="greentext">Giuliano Torres PT</h4>
             </div>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="text-center ms-auto">
-              <Link
+              <a
                 className={
                   location.pathname === '/'
                     ? 'nav-link active greentext px-4'
                     : 'nav-link greentext opacity-75 px-4'
                 }
-                to={'/'}
+                href="#"
               >
                 HOME
-              </Link>
+              </a>
               <a
                 className="nav-link greentext opacity-75 px-4"
                 href="#presentation"
@@ -42,6 +44,12 @@ const MyNav = () => {
               </a>
               <a className="nav-link greentext opacity-75 px-4" href="#prices">
                 TARIFFE
+              </a>
+              <a className="nav-link greentext opacity-75 px-4" href="#reviews">
+                RECENSIONI
+              </a>
+              <a className="nav-link greentext opacity-75 px-4" href="#form">
+                SCRIVIMI
               </a>
               <a className="nav-link greentext opacity-75 px-4" href="#contact">
                 CONTATTI
