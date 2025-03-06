@@ -36,6 +36,7 @@ function Login() {
           }
         })
         .then((data: PostLoginResponse) => {
+          setLoginForm(initialLoginForm)
           localStorage.setItem('token', data.token)
           localStorage.setItem('roles', data.roles[0])
         })

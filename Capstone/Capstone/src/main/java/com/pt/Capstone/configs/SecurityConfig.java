@@ -1,6 +1,6 @@
 package com.pt.Capstone.configs;
 
-import com.pt.Capstone.requests.JwtRequestFilter;
+import com.pt.Capstone.components.JwtRequestFilter;
 import com.pt.Capstone.services.CustomUserDetailsService;
 import com.pt.Capstone.components.JwtAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;

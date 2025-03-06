@@ -1,8 +1,7 @@
-package com.pt.Capstone.requests;
+package com.pt.Capstone.components;
 
 
 import com.pt.Capstone.services.CustomUserDetailsService;
-import com.pt.Capstone.components.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
