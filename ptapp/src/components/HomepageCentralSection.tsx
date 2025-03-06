@@ -29,7 +29,24 @@ function HomepageCentralSection() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    //POST
+    try {
+      fetch('http://localhost:8080/api/email', {
+        method: 'POST',
+        body: JSON.stringify(infoRequest),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => {
+        if (response.ok) {
+          console.log('mail inviata')
+        } else {
+          throw new Error('Login non riuscito')
+        }
+      })
+    } catch (error) {
+      console.log('Error', error)
+    }
+    setInfoRequest(initialInfoRequest)
   }
 
   const responsive = {
@@ -369,7 +386,7 @@ function HomepageCentralSection() {
           </h4>
         </Col>
         <Col className="col-10">
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label className=" text-uppercase ms-2 fw-bold">
                 * Indirizzo Email

@@ -10,10 +10,10 @@ function NotFound() {
       <Button
         variant="success"
         onClick={() => {
-          navigate('/')
+          navigate(-1)
         }}
       >
-        Torna alla home
+        Torna indietro
       </Button>
     </Container>
   )
