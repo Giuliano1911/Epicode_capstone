@@ -118,9 +118,6 @@ public class CustomerService {
         if (id == 1 || id == 2) {
             throw new SecurityException("User with id: " + id + " cannot be updated.");
         }
-        if (customerRepository.existsByPhoneNumber(customerPutRequest.getPhoneNumber())) {
-            throw new EntityExistsException("User with phone number: " + customerPutRequest.getPhoneNumber() + " already exists.");
-        }
         Customer customer = customerFromPutRequest(customerPutRequest);
         customer.setId(id);
         customer.setRoles(Set.of(Role.ROLE_CUSTOMER));

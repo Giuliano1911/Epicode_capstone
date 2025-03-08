@@ -298,7 +298,8 @@ function HomepageCentralSection() {
                   <i className="fas fa-pencil-alt"></i>
                 </Col>
                 <Col className="col-11">
-                  Possibilità di apportare modifiche anche durante la settimana
+                  Possibilità di apportare modifiche al piano anche durante la
+                  settimana
                 </Col>
               </Row>
               <Row className="my-2">
@@ -309,7 +310,7 @@ function HomepageCentralSection() {
               </Row>
               <hr />
               <h5 className="mt-3 mb-0">
-                <i className="fas fa-money-bill-wave-alt fs-6"></i> € 320 ogni
+                <i className="fas fa-money-bill-wave-alt fs-6"></i> € 300 ogni
                 12 settimane
               </h5>
             </Card.Body>
@@ -337,7 +338,7 @@ function HomepageCentralSection() {
             itemClass="carousel-item-padding-40-px"
           >
             <Review
-              name="Gennaro Lucchi"
+              name="Gennaro Messina"
               text="Competenza, professionalità e disponibilità i suoi punti di forza, sempre pronto a trovare soluzioni condivise ed aperto al dialogo e alla comunicazione."
               rating={4.4}
             />

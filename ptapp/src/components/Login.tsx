@@ -1,8 +1,13 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-
-import MyNav from './MyNav'
+import { useNavigate } from 'react-router'
 import { FormEvent, useState } from 'react'
+
 import PostLoginResponse from '../types/PostLoginResponse'
+import MyNav from './HomepageComponents/MyNav'
+
+interface LoginProps {
+  URL: string
+}
 
 interface LoginForm {
   username: string
@@ -14,14 +19,16 @@ const initialLoginForm = {
   password: '',
 }
 
-function Login() {
+function Login({ URL }: LoginProps) {
+  const navigate = useNavigate()
+
   const [loginForm, setLoginForm] = useState<LoginForm>(initialLoginForm)
   const [visibility, setVisibility] = useState<boolean>(false)
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     try {
-      fetch('http://localhost:8080/api/customers/login', {
+      fetch(URL + 'customers/login', {
         method: 'POST',
         body: JSON.stringify(loginForm),
         headers: {
@@ -39,6 +46,11 @@ function Login() {
           setLoginForm(initialLoginForm)
           localStorage.setItem('token', data.token)
           localStorage.setItem('roles', data.roles[0])
+          if (data.roles[0].includes('CUSTOMER')) {
+            navigate('/training')
+          } else {
+            navigate('/users')
+          }
         })
     } catch (error) {
       console.log('Error', error)

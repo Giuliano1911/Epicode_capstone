@@ -6,7 +6,7 @@ function NotFound() {
 
   return (
     <Container className="text-center my-5">
-      <Alert variant="danger">Pagina non trovata!</Alert>
+      <Alert variant="danger">Non dovresti essere qui!</Alert>
       <Button
         variant="success"
         onClick={() => {
