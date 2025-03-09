@@ -2,6 +2,7 @@ package com.pt.Capstone.services;
 
 import com.pt.Capstone.entities.Exercise;
 import com.pt.Capstone.repositories.ExerciseRepository;
+import com.pt.Capstone.requests.ExerciseRequest;
 import com.pt.Capstone.responses.EntityPostResponse;
 import com.pt.Capstone.responses.ExerciseResponse;
 import jakarta.persistence.EntityExistsException;
@@ -44,20 +45,23 @@ public class ExerciseService {
         return exercise;
     }
 
-    public EntityPostResponse save(ExerciseResponse exerciseResponse) {
-        if (exerciseRepository.existsByName(exerciseResponse.getName())) {
-            throw new EntityExistsException("Exercise with name: " + exerciseResponse.getName() + " already exists.");
+    public Exercise ExerciseFromRequest(@Valid ExerciseRequest exerciseRequest) {
+        Exercise exercise = new Exercise();
+        BeanUtils.copyProperties(exerciseRequest, exercise);
+        return exercise;
+    }
+
+    public EntityPostResponse save(ExerciseRequest exerciseRequest) {
+        if (exerciseRepository.existsByName(exerciseRequest.getName())) {
+            throw new EntityExistsException("Exercise with name: " + exerciseRequest.getName() + " already exists.");
         }
-        Exercise exercise = ExerciseFromResponse(exerciseResponse);
+        Exercise exercise = ExerciseFromRequest(exerciseRequest);
         exerciseRepository.save(exercise);
         return new EntityPostResponse(exercise.getId());
     }
 
-    public ExerciseResponse update(Long id, ExerciseResponse exerciseResponse) {
-        if (exerciseRepository.existsByName(exerciseResponse.getName())) {
-            throw new EntityExistsException("Exercise with name: " + exerciseResponse.getName() + " already exists.");
-        }
-        Exercise exercise = ExerciseFromResponse(exerciseResponse);
+    public ExerciseResponse update(Long id, ExerciseRequest exerciseRequest) {
+        Exercise exercise = ExerciseFromRequest(exerciseRequest);
         exercise.setId(id);
         return exerciseResponseFromEntity(exerciseRepository.save(exercise));
     }

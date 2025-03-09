@@ -2,8 +2,9 @@ import { useLocation, useNavigate, useParams } from 'react-router'
 import { useState, FormEvent, useEffect } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 
-import DashboardNav from '../DashboardNav'
 import UserResponse from '../../types/UserResponse'
+
+import DashboardNav from '../DashboardNav'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 import NotFound from '../NotFound'

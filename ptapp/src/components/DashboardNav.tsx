@@ -20,7 +20,11 @@ function DashboardNav({ role }: DashboardNavProps) {
       >
         <Container fluid>
           <div className=" d-flex align-items-center navbar-brand">
-            <img className="logo" src={whiteLogo} />
+            <img
+              className="logo"
+              src={whiteLogo}
+              alt="Giuliano Torres PT logo"
+            />
             <h4 className="greentext">Giuliano Torres PT</h4>
           </div>
           {role.includes('PERSONALTRAINER') && (

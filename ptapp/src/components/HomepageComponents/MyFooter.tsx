@@ -7,7 +7,7 @@ function MyFooter() {
     <Col id="contact" className="col-12 px-5 pt-5">
       <Row>
         <Col className="col-4 col-lg-2">
-          <img className="w-75" src={whiteLogo} />
+          <img className="w-75" src={whiteLogo} alt="Giuliano Torres PT logo" />
         </Col>
         <Col className="col-lg-5 greentext">
           <p className="mb-4">Studio Catania centro</p>

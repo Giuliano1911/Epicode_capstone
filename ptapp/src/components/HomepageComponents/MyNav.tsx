@@ -19,7 +19,11 @@ const MyNav = () => {
         <Container fluid>
           <Link to={'/'} className="navbar-brand">
             <div className=" d-flex align-items-center">
-              <img className="logo" src={whiteLogo} />
+              <img
+                className="logo"
+                src={whiteLogo}
+                alt="Giuliano Torres PT logo"
+              />
               <h4 className="greentext">Giuliano Torres PT</h4>
             </div>
           </Link>

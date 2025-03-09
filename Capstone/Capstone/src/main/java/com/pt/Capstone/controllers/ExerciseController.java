@@ -1,5 +1,6 @@
 package com.pt.Capstone.controllers;
 
+import com.pt.Capstone.requests.ExerciseRequest;
 import com.pt.Capstone.responses.EntityPostResponse;
 import com.pt.Capstone.responses.ExerciseResponse;
 import com.pt.Capstone.services.ExerciseService;
@@ -35,14 +36,14 @@ public class ExerciseController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EntityPostResponse save(@RequestBody @Valid ExerciseResponse exerciseResponse) {
-        return exerciseService.save(exerciseResponse);
+    public EntityPostResponse save(@RequestBody @Valid ExerciseRequest exerciseRequest) {
+        return exerciseService.save(exerciseRequest);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ExerciseResponse update(@PathVariable Long id, @RequestBody @Valid ExerciseResponse exerciseResponse) {
-        return exerciseService.update(id, exerciseResponse);
+    public ExerciseResponse update(@PathVariable Long id, @RequestBody @Valid ExerciseRequest exerciseRequest) {
+        return exerciseService.update(id, exerciseRequest);
     }
 
     @DeleteMapping("/{id}")

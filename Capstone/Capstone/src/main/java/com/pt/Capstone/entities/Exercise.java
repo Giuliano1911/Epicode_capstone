@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "exercises")
 @Data
@@ -22,6 +20,5 @@ public class Exercise {
 
     private String description;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> muscleGroups;
+    private String muscleGroup;
 }

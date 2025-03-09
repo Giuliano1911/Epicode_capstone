@@ -17,5 +17,5 @@ public class ExerciseResponse {
 
     private String description;
 
-    private List<String> muscleGroups;
+    private String muscleGroup;
 }

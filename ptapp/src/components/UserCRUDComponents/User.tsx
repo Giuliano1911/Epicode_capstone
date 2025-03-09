@@ -1,7 +1,7 @@
 import { Button, Card } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 import UserResponse from '../../types/UserResponse'
-import { Link } from 'react-router'
 
 interface UserProps {
   u: UserResponse
@@ -26,12 +26,12 @@ function User({ u }: UserProps) {
         <Card.Text>Ultimo pagamento: {u.lastPaymentDate}</Card.Text>
         <Link className="text-decoration-none text-black" to={'/'}>
           <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold mt-2">
-            Crea Scheda
+            Visualizza Schede
           </Button>
         </Link>
         <Link className="text-decoration-none text-black" to={'/'}>
           <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold ms-2 me-2 mt-2">
-            Crea Dieta
+            Visualizza Dieta
           </Button>
         </Link>
         <Link

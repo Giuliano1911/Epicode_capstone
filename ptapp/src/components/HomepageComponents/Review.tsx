@@ -16,6 +16,7 @@ function Review({ name, text, rating }: ReviewProps) {
           <div className=" d-flex">
             <img
               src={propic}
+              alt="profile picture"
               className="border border-1 border-black rounded-circle propic  me-2"
             />
             <Card.Title>{name}</Card.Title>

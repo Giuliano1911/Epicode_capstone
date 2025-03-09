@@ -1,12 +1,13 @@
 import { Card, Col, Row, Form, Button } from 'react-bootstrap'
+import { FormEvent, useState } from 'react'
 import Carousel from 'react-multi-carousel'
 
 import pic from '../assets/pt-photo.jpg'
 import basic from '../assets/basicPlan.png'
 import pro from '../assets/mediumPlan.png'
 import elite from '../assets/superPlan.png'
+
 import Review from './Review'
-import { FormEvent, useState } from 'react'
 import MyFooter from './MyFooter'
 
 interface InfoRequest {
@@ -80,7 +81,11 @@ function HomepageCentralSection() {
             Coaching Online e Dietologo nutrizionista
           </h5>
           <div className=" d-flex justify-content-center">
-            <img className=" w-75" src={pic} />
+            <img
+              className=" w-75"
+              src={pic}
+              alt="Giuliano Torres's photo at the gym"
+            />
           </div>
           <h2 className=" text-center my-3">Giuliano Torres</h2>
           <div className=" mx-5">
@@ -190,7 +195,11 @@ function HomepageCentralSection() {
         </Col>
         <Col className="col-12 col-lg-4 mb-5 mb-lg-0">
           <Card className=" p-3 mx-4 h-100 rounded-4">
-            <Card.Img className="rounded-4" src={basic} />
+            <Card.Img
+              className="rounded-4"
+              src={basic}
+              alt="basic plan picture"
+            />
             <Card.Body>
               <Card.Title className="fs-3 my-3">Basic Plan</Card.Title>
               <Row className="my-2">
@@ -231,7 +240,7 @@ function HomepageCentralSection() {
         </Col>
         <Col className="col-12 col-lg-4  mb-5 mb-lg-0">
           <Card className=" p-3 mx-4 h-100 rounded-4">
-            <Card.Img className="rounded-4" src={pro} />
+            <Card.Img className="rounded-4" src={pro} alt="pro plan picture" />
             <Card.Body>
               <Card.Title className="fs-3 my-3">Pro Plan</Card.Title>
               <Row className="my-2">
@@ -267,7 +276,11 @@ function HomepageCentralSection() {
         </Col>
         <Col className="col-12 col-lg-4 ">
           <Card className=" p-3 mx-4 h-100 rounded-4">
-            <Card.Img className="rounded-4" src={elite} />
+            <Card.Img
+              className="rounded-4"
+              src={elite}
+              alt="elite plan picture"
+            />
             <Card.Body>
               <Card.Title className="fs-3 my-3">Elite Plan</Card.Title>
               <Row className="my-2">
