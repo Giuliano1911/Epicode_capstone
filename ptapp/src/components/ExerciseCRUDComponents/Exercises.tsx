@@ -11,12 +11,7 @@ import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 import Exercise from './Exercise'
 
-interface ExercisesProps {
-  restart: boolean
-  setRestart: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-function Exercises({ restart, setRestart }: ExercisesProps) {
+function Exercises() {
   const role = localStorage.getItem('roles')
   const token = localStorage.getItem('token')
   const [exercises, setExercises] = useState<ExerciseResponse[]>([])
@@ -41,7 +36,6 @@ function Exercises({ restart, setRestart }: ExercisesProps) {
         console.log(data)
         setExercises(data)
         setIsLoading(false)
-        setRestart(false)
       })
       .catch((error) => {
         setIsError(true)
@@ -52,7 +46,7 @@ function Exercises({ restart, setRestart }: ExercisesProps) {
   useEffect(() => {
     getExercises()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [restart])
+  }, [])
 
   return (
     <>
@@ -85,15 +79,7 @@ function Exercises({ restart, setRestart }: ExercisesProps) {
                 <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
                   <h2>Lista esercizi</h2>
                   {exercises.map((e) => {
-                    return (
-                      <Exercise
-                        e={e}
-                        setRestart={setRestart}
-                        URL={URL}
-                        token={token!}
-                        key={e.id}
-                      />
-                    )
+                    return <Exercise e={e} token={token!} key={e.id} />
                   })}
                 </Col>
               </Row>

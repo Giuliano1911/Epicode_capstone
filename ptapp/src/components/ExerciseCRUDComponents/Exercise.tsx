@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import { Alert, Card } from 'react-bootstrap'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { URL } from '../../config/config'
 
 import ExerciseResponse from '../../types/ExerciseResponse'
 
 interface ExerciseProps {
   e: ExerciseResponse
-  setRestart: React.Dispatch<React.SetStateAction<boolean>>
-  URL: string
   token: string
 }
 
-function Exercise({ e, setRestart, URL, token }: ExerciseProps) {
+function Exercise({ e, token }: ExerciseProps) {
   const [alert, setAlert] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   const deleteEx = async () => {
     try {
@@ -23,7 +23,6 @@ function Exercise({ e, setRestart, URL, token }: ExerciseProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          setRestart(true)
           return response.json()
         } else {
           throw new Error('Cannot delete')
@@ -32,6 +31,7 @@ function Exercise({ e, setRestart, URL, token }: ExerciseProps) {
     } catch (error) {
       console.log('Error', error)
     }
+    navigate(0)
   }
 
   return (

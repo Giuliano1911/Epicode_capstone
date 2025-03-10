@@ -10,10 +10,6 @@ import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 import NotFound from '../NotFound'
 
-interface UpdateOrRegisterUserProps {
-  setRestart: React.Dispatch<React.SetStateAction<boolean>>
-}
-
 interface RegisterUserForm {
   username: string
   password: string
@@ -32,7 +28,7 @@ const initialRegisterForm = {
   phoneNumber: '',
 }
 
-function UpdateOrRegisterUser({ setRestart }: UpdateOrRegisterUserProps) {
+function UpdateOrRegisterUser() {
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
@@ -56,7 +52,6 @@ function UpdateOrRegisterUser({ setRestart }: UpdateOrRegisterUserProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          setRestart(true)
           return response.json()
         } else {
           throw new Error('Registration error')
@@ -80,7 +75,6 @@ function UpdateOrRegisterUser({ setRestart }: UpdateOrRegisterUserProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          //setRestart(true)
           return response.json()
         } else {
           throw new Error('Update error')

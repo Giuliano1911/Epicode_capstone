@@ -1,18 +1,18 @@
 import { Alert, Button, Card } from 'react-bootstrap'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { useState } from 'react'
+import { URL } from '../../config/config'
 
 import UserResponse from '../../types/UserResponse'
-import { useState } from 'react'
 
 interface UserProps {
   u: UserResponse
-  setRestart: React.Dispatch<React.SetStateAction<boolean>>
-  URL: string
   token: string
 }
 
-function User({ u, setRestart, URL, token }: UserProps) {
+function User({ u, token }: UserProps) {
   const [alert, setAlert] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   const deleteUser = async () => {
     try {
@@ -23,7 +23,6 @@ function User({ u, setRestart, URL, token }: UserProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          setRestart(true)
           return response.json()
         } else {
           throw new Error('Cannot delete')
@@ -32,6 +31,7 @@ function User({ u, setRestart, URL, token }: UserProps) {
     } catch (error) {
       console.log('Error', error)
     }
+    navigate(0)
   }
 
   return (

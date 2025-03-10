@@ -10,10 +10,6 @@ import DashboardNav from '../DashboardNav'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 
-interface UpdateOrRegisterExerciseProps {
-  setRestart: React.Dispatch<React.SetStateAction<boolean>>
-}
-
 interface RegisterExercise {
   name: string
   description: string
@@ -26,7 +22,7 @@ const initialRegister = {
   muscleGroup: '',
 }
 
-function UpdateOrCreateExercise({ setRestart }: UpdateOrRegisterExerciseProps) {
+function UpdateOrCreateExercise() {
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
@@ -50,7 +46,6 @@ function UpdateOrCreateExercise({ setRestart }: UpdateOrRegisterExerciseProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          setRestart(true)
           return response.json()
         } else {
           throw new Error('Registration error')
@@ -75,7 +70,6 @@ function UpdateOrCreateExercise({ setRestart }: UpdateOrRegisterExerciseProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          setRestart(true)
           return response.json()
         } else {
           throw new Error('Registration error')

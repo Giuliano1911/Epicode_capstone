@@ -10,10 +10,6 @@ import NotFound from '../NotFound'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 
-interface PaymentProps {
-  setRestart: React.Dispatch<React.SetStateAction<boolean>>
-}
-
 interface PaymentForm {
   lastPaymentDate: string
 }
@@ -22,7 +18,7 @@ const initialPaymentForm = {
   lastPaymentDate: '',
 }
 
-function Payment({ setRestart }: PaymentProps) {
+function Payment() {
   const [date, setDate] = useState<PaymentForm>(initialPaymentForm)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
@@ -43,7 +39,6 @@ function Payment({ setRestart }: PaymentProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          setRestart(true)
           return response.json()
         } else {
           throw new Error('Registration error')

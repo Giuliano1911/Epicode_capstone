@@ -1,6 +1,6 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router'
+import { Link } from 'react-router'
 import { URL } from '../../config/config'
 
 import UserResponse from '../../types/UserResponse'
@@ -11,15 +11,9 @@ import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 import User from './User'
 
-interface UsersProps {
-  restart: boolean
-  setRestart: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-function Users({ setRestart }: UsersProps) {
+function Users() {
   const role = localStorage.getItem('roles')
   const token = localStorage.getItem('token')
-  const location = useLocation()
   const [users, setUsers] = useState<UserResponse[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
@@ -43,7 +37,6 @@ function Users({ setRestart }: UsersProps) {
         console.log(data)
         setUsers(data)
         setIsLoading(false)
-        //setRestart(false)
       })
       .catch((error) => {
         setIsError(true)
@@ -54,7 +47,7 @@ function Users({ setRestart }: UsersProps) {
   useEffect(() => {
     getUsers()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname])
+  }, [])
 
   function isDateBeforeNinetyDaysAgo(date: number) {
     if (date) {
@@ -109,15 +102,7 @@ function Users({ setRestart }: UsersProps) {
                   <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
                     <h2>Lista utenti</h2>
                     {users.slice(2).map((u) => {
-                      return (
-                        <User
-                          u={u}
-                          key={u.id}
-                          setRestart={setRestart}
-                          URL={URL}
-                          token={token!}
-                        />
-                      )
+                      return <User u={u} key={u.id} token={token!} />
                     })}
                   </Col>
                 )}
@@ -130,15 +115,7 @@ function Users({ setRestart }: UsersProps) {
                         isDateBeforeNinetyDaysAgo(Date.parse(u.lastPaymentDate))
                       )
                       .map((u) => {
-                        return (
-                          <User
-                            u={u}
-                            key={u.id}
-                            setRestart={setRestart}
-                            URL={URL}
-                            token={token!}
-                          />
-                        )
+                        return <User u={u} key={u.id} token={token!} />
                       })}
                   </Col>
                 )}
