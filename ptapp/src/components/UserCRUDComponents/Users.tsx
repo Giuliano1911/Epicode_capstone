@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { URL } from '../../config/config'
@@ -18,6 +18,7 @@ function Users() {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
   const [isClicked, setIsClicked] = useState<boolean>(false)
+  const [search, setSearch] = useState<string>('')
 
   const getUsers = async () => {
     fetch(URL + 'customers', {
@@ -94,16 +95,32 @@ function Users() {
                       Crea nuovo utente
                     </Button>
                   </Link>
-                  <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold">
-                    NONLOSOO
-                  </Button>
+                  <Form>
+                    <Form.Group className="mb-3" controlId="formBasicSurname">
+                      <Form.Label className="ms-2 fw-bold">
+                        Cerca utente per cognome
+                      </Form.Label>
+                      <Form.Control
+                        className="py-3"
+                        type="text"
+                        required
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Form>
                 </Col>
                 {!isClicked && (
                   <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
                     <h2>Lista utenti</h2>
-                    {users.slice(2).map((u) => {
-                      return <User u={u} key={u.id} token={token!} />
-                    })}
+                    {users
+                      .slice(2)
+                      .filter((u) =>
+                        u.surname.toLowerCase().includes(search.toLowerCase())
+                      )
+                      .map((u) => {
+                        return <User u={u} key={u.id} token={token!} />
+                      })}
                   </Col>
                 )}
                 {isClicked && (
@@ -113,6 +130,9 @@ function Users() {
                       .slice(2)
                       .filter((u) =>
                         isDateBeforeNinetyDaysAgo(Date.parse(u.lastPaymentDate))
+                      )
+                      .filter((u) =>
+                        u.surname.toLowerCase().includes(search.toLowerCase())
                       )
                       .map((u) => {
                         return <User u={u} key={u.id} token={token!} />

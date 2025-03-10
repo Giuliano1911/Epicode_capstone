@@ -5,7 +5,7 @@ import com.pt.Capstone.entities.TrainingDay;
 import com.pt.Capstone.repositories.DetailedExerciseRepository;
 import com.pt.Capstone.repositories.ExerciseRepository;
 import com.pt.Capstone.repositories.TrainingDayRepository;
-import com.pt.Capstone.requests.DetailedExerciseRequest;
+import com.pt.Capstone.requests.detailedExercise.*;
 import com.pt.Capstone.responses.DetailedExerciseResponse;
 import com.pt.Capstone.responses.EntityPostResponse;
 import jakarta.persistence.EntityNotFoundException;
@@ -43,13 +43,10 @@ public class DetailedExerciseService {
         return new EntityPostResponse(detailedExercise.getId());
     }
 
-    public void update(Long id, @Valid DetailedExerciseRequest detailedExerciseRequest) {
-        Long exerciseId = detailedExerciseRequest.getExerciseId();
+    public void update(Long id, @Valid ExerciseIdRequest exerciseIdRequest) {
+        Long exerciseId = exerciseIdRequest.getExerciseId();
         DetailedExercise detailedExercise = detailedExerciseRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("DetailedExercise with id: " + id + " not found"));
         detailedExercise.setExercise(exerciseRepository.findById(exerciseId).orElseThrow(() -> new EntityNotFoundException("Exercise with id: " + exerciseId + " not found")));
-        detailedExercise.setReps(detailedExerciseRequest.getReps());
-        detailedExercise.setSets(detailedExerciseRequest.getSets());
-        detailedExercise.setRest(detailedExerciseRequest.getRest());
         detailedExerciseRepository.save(detailedExercise);
     }
 

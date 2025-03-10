@@ -1,6 +1,6 @@
 package com.pt.Capstone.controllers;
 
-import com.pt.Capstone.requests.detailedExercise.*;
+import com.pt.Capstone.requests.DetailedExerciseRequest;
 import com.pt.Capstone.responses.DetailedExerciseResponse;
 import com.pt.Capstone.responses.EntityPostResponse;
 import com.pt.Capstone.services.DetailedExerciseService;
@@ -31,28 +31,10 @@ public class DetailedExerciseController {
         return detailedExerciseService.save(id);
     }
 
-    @PutMapping("/{id}/exercise")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateExercise(@PathVariable Long id, @RequestBody @Valid ExerciseIdRequest exerciseIdRequest) {
-        detailedExerciseService.updateExercise(id, exerciseIdRequest);
-    }
-
-    @PutMapping("/{id}/sets")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateSets(@PathVariable Long id, @RequestBody @Valid SetsRequest setsRequest) {
-        detailedExerciseService.updateSets(id, setsRequest);
-    }
-
-    @PutMapping("/{id}/reps")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateReps(@PathVariable Long id, @RequestBody @Valid RepsRequest repsRequest) {
-        detailedExerciseService.updateReps(id, repsRequest);
-    }
-
-    @PutMapping("/{id}/rest")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateRest(@PathVariable Long id, @RequestBody @Valid RestRequest restRequest) {
-        detailedExerciseService.updateRest(id, restRequest);
+    public void updateExercise(@PathVariable Long id, @RequestBody @Valid DetailedExerciseRequest detailedExerciseRequest) {
+        detailedExerciseService.update(id, detailedExerciseRequest);
     }
 
     @DeleteMapping("/{id}")

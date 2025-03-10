@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, FormCheck, Row } from 'react-bootstrap'
 import { Link } from 'react-router'
 import { URL } from '../../config/config'
 
@@ -17,6 +17,8 @@ function Exercises() {
   const [exercises, setExercises] = useState<ExerciseResponse[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
+  const [search, setSearch] = useState<string>('')
+  const [muscle, setMuscle] = useState<string>('')
 
   const getExercises = () => {
     fetch(URL + 'exercises', {
@@ -61,9 +63,6 @@ function Exercises() {
               <Row>
                 <Col className="col-12 col-md-4 mt-4 d-flex flex-column gap-4">
                   <h2>Impostazioni</h2>
-                  <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold">
-                    Visualizza pagamenti scaduti
-                  </Button>
                   <Link
                     className="text-decoration-none text-black"
                     to={'/exercises/new'}
@@ -72,15 +71,107 @@ function Exercises() {
                       Crea nuovo esercizio
                     </Button>
                   </Link>
-                  <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold">
-                    NONLOSOO
-                  </Button>
+                  <Form>
+                    <Form.Group className="mb-3" controlId="formBasicUsername">
+                      <Form.Label className="ms-2 fw-bold">
+                        Cerca esercizio per nome
+                      </Form.Label>
+                      <Form.Control
+                        className="py-3"
+                        type="text"
+                        required
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicExMuscles">
+                      <Form.Label className="ms-2 fw-bold d-block">
+                        Cerca esercizio per muscolo allenato
+                      </Form.Label>
+                      <FormCheck
+                        label="Tutti"
+                        name="group"
+                        type="radio"
+                        value={''}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Pettorali"
+                        name="group"
+                        type="radio"
+                        value={'pettorali'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Dorsali"
+                        name="group"
+                        type="radio"
+                        value={'dorsali'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Spalle"
+                        name="group"
+                        type="radio"
+                        value={'bicipiti'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Bicipiti"
+                        name="group"
+                        type="radio"
+                        value={'bicipiti'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Tricipiti"
+                        name="group"
+                        type="radio"
+                        value={'tricipiti'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Quadricipiti"
+                        name="group"
+                        type="radio"
+                        value={'quadricipiti'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Femorali"
+                        name="group"
+                        type="radio"
+                        value={'femorali'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                      <FormCheck
+                        inline
+                        label="Glutei"
+                        name="group"
+                        type="radio"
+                        value={'glutei'}
+                        onChange={(e) => setMuscle(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Form>
                 </Col>
                 <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
                   <h2>Lista esercizi</h2>
-                  {exercises.map((e) => {
-                    return <Exercise e={e} token={token!} key={e.id} />
-                  })}
+                  {exercises
+                    .filter((e) =>
+                      e.name.toLowerCase().includes(search.toLowerCase())
+                    )
+                    .filter((e) => e.muscleGroup.includes(muscle))
+                    .map((e) => {
+                      return <Exercise e={e} token={token!} key={e.id} />
+                    })}
                 </Col>
               </Row>
             </Container>

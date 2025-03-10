@@ -77,7 +77,10 @@ function User({ u, token }: UserProps) {
           Numero di telefono: {u.phoneNumber}
         </Card.Text>
         <Card.Text>Ultimo pagamento: {u.lastPaymentDate}</Card.Text>
-        <Link className="text-decoration-none text-black" to={'/'}>
+        <Link
+          className="text-decoration-none text-black"
+          to={'/trainingWeeks/' + u.id}
+        >
           <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold mt-2">
             Visualizza Schede
           </Button>

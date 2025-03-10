@@ -12,11 +12,11 @@ public class DetailedExerciseResponse {
 
     private Long id;
 
-    private String reps;
+    private Integer reps;
 
-    private String sets;
+    private Integer sets;
 
-    private String rest;
+    private Integer rest;
 
     private Exercise exercise;
 }

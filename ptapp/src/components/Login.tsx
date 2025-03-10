@@ -103,7 +103,7 @@ function Login() {
                     : 'bg-white border border-0 d-none'
                 }
               >
-                <i className="fas fa-eye-slash"></i>
+                <i className="fas fa-eye"></i>
                 Nascondi Password
               </button>
               <button
@@ -115,7 +115,7 @@ function Login() {
                     : 'bg-white border border-0 d-block'
                 }
               >
-                <i className="fas fa-eye"></i>
+                <i className="fas fa-eye-slash"></i>
                 Mostra Password
               </button>
               <Button

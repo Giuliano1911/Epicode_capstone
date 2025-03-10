@@ -20,9 +20,9 @@ public class DetailedExercise {
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
-    private String reps;
+    private Integer reps;
 
-    private String sets;
+    private Integer sets;
 
-    private String rest;
+    private Integer rest;
 }
