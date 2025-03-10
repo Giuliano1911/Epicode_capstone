@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router'
+import { URL } from '../../config/config'
 
 import ExerciseResponse from '../../types/ExerciseResponse'
 
@@ -11,12 +12,11 @@ import FetchError from '../FetchError'
 import Exercise from './Exercise'
 
 interface ExercisesProps {
-  URL: string
   restart: boolean
   setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function Exercises({ URL, restart, setRestart }: ExercisesProps) {
+function Exercises({ restart, setRestart }: ExercisesProps) {
   const role = localStorage.getItem('roles')
   const token = localStorage.getItem('token')
   const [exercises, setExercises] = useState<ExerciseResponse[]>([])
@@ -85,7 +85,15 @@ function Exercises({ URL, restart, setRestart }: ExercisesProps) {
                 <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
                   <h2>Lista esercizi</h2>
                   {exercises.map((e) => {
-                    return <Exercise e={e} key={e.id} />
+                    return (
+                      <Exercise
+                        e={e}
+                        setRestart={setRestart}
+                        URL={URL}
+                        token={token!}
+                        key={e.id}
+                      />
+                    )
                   })}
                 </Col>
               </Row>

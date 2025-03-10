@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { useState, FormEvent, useEffect } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { URL } from '../../config/config'
 
 import UserResponse from '../../types/UserResponse'
 
@@ -10,7 +11,6 @@ import FetchError from '../FetchError'
 import NotFound from '../NotFound'
 
 interface UpdateOrRegisterUserProps {
-  URL: string
   setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -32,7 +32,7 @@ const initialRegisterForm = {
   phoneNumber: '',
 }
 
-function UpdateOrRegisterUser({ URL, setRestart }: UpdateOrRegisterUserProps) {
+function UpdateOrRegisterUser({ setRestart }: UpdateOrRegisterUserProps) {
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
@@ -80,7 +80,7 @@ function UpdateOrRegisterUser({ URL, setRestart }: UpdateOrRegisterUserProps) {
         },
       }).then((response) => {
         if (response.ok) {
-          setRestart(true)
+          //setRestart(true)
           return response.json()
         } else {
           throw new Error('Update error')
@@ -229,7 +229,7 @@ function UpdateOrRegisterUser({ URL, setRestart }: UpdateOrRegisterUserProps) {
                     </Form.Group>
                     <Button
                       type="submit"
-                      className="submit-button-bw rounded-pill bg-black border-0 greentext mb-5 mt-2 text-uppercase"
+                      className="submit-button-bw rounded-pill bg-black border-0 greentext mb-3 mt-2 text-uppercase"
                     >
                       Registra
                     </Button>
@@ -305,12 +305,13 @@ function UpdateOrRegisterUser({ URL, setRestart }: UpdateOrRegisterUserProps) {
                     </Form.Group>
                     <Button
                       type="submit"
-                      className="submit-button-bw rounded-pill bg-black border-0 greentext mb-5 mt-2 text-uppercase"
+                      className="submit-button-bw rounded-pill bg-black border-0 greentext mb-3 mt-2 text-uppercase"
                     >
                       Modifica
                     </Button>
                   </Form>
                 )}
+                <Button onClick={() => navigate(-1)}>Torna indietro</Button>
               </Col>
             </Row>
           </Container>

@@ -15,44 +15,45 @@ import Payment from './components/UserCRUDComponents/Payment'
 import UpdateOrCreateExercise from './components/ExerciseCRUDComponents/UpdateOrCreateExercise'
 
 function App() {
-  const URL = 'http://localhost:8080/api/'
   const [restart, setRestart] = useState<boolean>(false)
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<Login URL={URL} />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/users"
           element={
-            <Users URL={URL} restart={restart} setRestart={setRestart} />
+            <Users
+              restart={restart}
+              setRestart={setRestart}
+              key={Math.random()}
+            />
           }
         />
         <Route
           path="/users/register"
-          element={<UpdateOrRegisterUser URL={URL} setRestart={setRestart} />}
+          element={<UpdateOrRegisterUser setRestart={setRestart} />}
         />
         <Route
           path="/users/update/:id"
-          element={<UpdateOrRegisterUser URL={URL} setRestart={setRestart} />}
+          element={<UpdateOrRegisterUser setRestart={setRestart} />}
         />
         <Route
           path="/users/payment/:id"
-          element={<Payment URL={URL} setRestart={setRestart} />}
+          element={<Payment setRestart={setRestart} />}
         />
         <Route
           path="/exercises"
-          element={
-            <Exercises URL={URL} restart={restart} setRestart={setRestart} />
-          }
+          element={<Exercises restart={restart} setRestart={setRestart} />}
         />
         <Route
           path="/exercises/new"
-          element={<UpdateOrCreateExercise URL={URL} setRestart={setRestart} />}
+          element={<UpdateOrCreateExercise setRestart={setRestart} />}
         />
         <Route
           path="/exercises/update/:id"
-          element={<UpdateOrCreateExercise URL={URL} setRestart={setRestart} />}
+          element={<UpdateOrCreateExercise setRestart={setRestart} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

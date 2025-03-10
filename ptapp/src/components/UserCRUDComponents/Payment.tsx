@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router'
+import { URL } from '../../config/config'
 
 import UserResponse from '../../types/UserResponse'
 
@@ -10,7 +11,6 @@ import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 
 interface PaymentProps {
-  URL: string
   setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -22,7 +22,7 @@ const initialPaymentForm = {
   lastPaymentDate: '',
 }
 
-function Payment({ URL, setRestart }: PaymentProps) {
+function Payment({ setRestart }: PaymentProps) {
   const [date, setDate] = useState<PaymentForm>(initialPaymentForm)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)

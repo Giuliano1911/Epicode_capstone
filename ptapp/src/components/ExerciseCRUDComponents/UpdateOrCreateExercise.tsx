@@ -1,16 +1,16 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
+import { Button, Col, Container, Form, FormCheck, Row } from 'react-bootstrap'
+import { URL } from '../../config/config'
 
 import ExerciseResponse from '../../types/ExerciseResponse'
 
 import NotFound from '../NotFound'
-import { Button, Col, Container, Form, FormCheck, Row } from 'react-bootstrap'
 import DashboardNav from '../DashboardNav'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 
 interface UpdateOrRegisterExerciseProps {
-  URL: string
   setRestart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -26,10 +26,7 @@ const initialRegister = {
   muscleGroup: '',
 }
 
-function UpdateOrCreateExercise({
-  URL,
-  setRestart,
-}: UpdateOrRegisterExerciseProps) {
+function UpdateOrCreateExercise({ setRestart }: UpdateOrRegisterExerciseProps) {
   const params = useParams()
   const location = useLocation()
   const navigate = useNavigate()
@@ -87,7 +84,7 @@ function UpdateOrCreateExercise({
     } catch (error) {
       console.log('Error', error)
     }
-    //navigate(-1)
+    navigate(-1)
   }
 
   useEffect(() => {

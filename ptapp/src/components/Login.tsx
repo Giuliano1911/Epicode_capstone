@@ -1,13 +1,10 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router'
 import { FormEvent, useState } from 'react'
+import { URL } from '../config/config'
 
 import PostLoginResponse from '../types/PostLoginResponse'
 import MyNav from './HomepageComponents/MyNav'
-
-interface LoginProps {
-  URL: string
-}
 
 interface LoginForm {
   username: string
@@ -19,7 +16,7 @@ const initialLoginForm = {
   password: '',
 }
 
-function Login({ URL }: LoginProps) {
+function Login() {
   const navigate = useNavigate()
 
   const [loginForm, setLoginForm] = useState<LoginForm>(initialLoginForm)
