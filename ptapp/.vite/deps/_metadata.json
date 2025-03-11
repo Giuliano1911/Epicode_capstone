@@ -1,8 +1,52 @@
 {
-  "hash": "ae704152",
+  "hash": "3d687f52",
   "configHash": "9bed0833",
-  "lockfileHash": "3fc97482",
-  "browserHash": "5e3640c3",
-  "optimized": {},
-  "chunks": {}
+  "lockfileHash": "9442b08a",
+  "browserHash": "9a7c3d87",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "6c49df09",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "b2c22663",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "71687765",
+      "needsInterop": true
+    },
+    "react-router": {
+      "src": "../../node_modules/react-router/dist/development/index.mjs",
+      "file": "react-router.js",
+      "fileHash": "1b1b2fe4",
+      "needsInterop": false
+    },
+    "react-bootstrap": {
+      "src": "../../node_modules/react-bootstrap/esm/index.js",
+      "file": "react-bootstrap.js",
+      "fileHash": "bdbb1511",
+      "needsInterop": false
+    },
+    "react-multi-carousel": {
+      "src": "../../node_modules/react-multi-carousel/index.js",
+      "file": "react-multi-carousel.js",
+      "fileHash": "f5785485",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-7BSIHEYL": {
+      "file": "chunk-7BSIHEYL.js"
+    },
+    "chunk-54Z5B5WF": {
+      "file": "chunk-54Z5B5WF.js"
+    }
+  }
 }
