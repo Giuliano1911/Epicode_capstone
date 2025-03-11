@@ -1,0 +1,119 @@
+body {
+  font-family: Montserrat;
+}
+
+.greentext {
+  color: greenyellow !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='greenyellow' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+h1 {
+  letter-spacing: 0.35em;
+  font-weight: 700;
+}
+
+#upper-page p {
+  opacity: 75%;
+}
+
+.logo {
+  width: 75px;
+}
+
+.propic {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+#reviews p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#reviews .card {
+  height: 175px;
+}
+
+.submit-button-login {
+  background-color: greenyellow !important;
+  color: black;
+}
+
+#presentation,
+#form {
+  background: greenyellow;
+  background: linear-gradient(
+    147deg,
+    greenyellow 0%,
+    rgba(186, 245, 124, 1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.scale {
+  transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-out;
+  overflow: hidden;
+}
+
+.scale:hover {
+  transform: scale(1.05);
+}
+
+.pettorali {
+  background-color: #b5def9 !important;
+}
+
+.dorsali {
+  background-color: #fdadad !important;
+}
+
+.spalle {
+  background-color: #ffdb92 !important;
+}
+
+.bicipiti {
+  background-color: #fffc9f !important;
+}
+
+.tricipiti {
+  background-color: #cdffa7 !important;
+}
+
+.quadricipiti {
+  background-color: #afaafa !important;
+}
+
+.femorali {
+  background-color: #ffa5e2 !important;
+}
+
+.glutei {
+  background-color: #e0a1ff !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}

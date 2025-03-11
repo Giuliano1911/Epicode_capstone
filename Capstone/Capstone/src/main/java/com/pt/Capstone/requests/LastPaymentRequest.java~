@@ -1,0 +1,4 @@
+package com.pt.Capstone.requests;
+
+public class LastPaymentRequest {
+}
