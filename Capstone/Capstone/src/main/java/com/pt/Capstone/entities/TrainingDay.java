@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,5 +24,7 @@ public class TrainingDay {
     private String day;
 
     @OneToMany
+    @JoinColumn(name = "training_day_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<DetailedExercise> detailedExercises = new ArrayList<>();
 }

@@ -27,8 +27,8 @@ public class DetailedExerciseController {
 
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public EntityPostResponse save(@PathVariable Long id) {
-        return detailedExerciseService.save(id);
+    public EntityPostResponse save(@PathVariable Long id, @RequestBody @Valid DetailedExerciseRequest detailedExerciseRequest) {
+        return detailedExerciseService.save(id, detailedExerciseRequest);
     }
 
     @PutMapping("/{id}")

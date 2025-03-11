@@ -35,9 +35,13 @@ public class DetailedExerciseService {
         return DetailedExerciseResponseFromDetailedExercise(detailedExerciseRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("DetailedExercise with id: " + id + " not found")));
     }
 
-    public EntityPostResponse save(Long id) {
+    public EntityPostResponse save(Long id, @Valid DetailedExerciseRequest detailedExerciseRequest) {
         TrainingDay trainingDay = trainingDayRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("TrainingDay with id: " + id + " not found"));
-        DetailedExercise detailedExercise = detailedExerciseRepository.save(new DetailedExercise());
+        Long exerciseId = detailedExerciseRequest.getExerciseId();
+        DetailedExercise detailedExercise= new DetailedExercise();
+        BeanUtils.copyProperties(detailedExerciseRequest, detailedExercise);
+        detailedExercise.setExercise(exerciseRepository.findById(exerciseId).orElseThrow(() -> new EntityNotFoundException("Exercise with id: " + exerciseId + " not found")));
+        detailedExerciseRepository.save(detailedExercise);
         trainingDay.getDetailedExercises().add(detailedExercise);
         trainingDayRepository.save(trainingDay);
         return new EntityPostResponse(detailedExercise.getId());

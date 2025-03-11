@@ -70,6 +70,38 @@ h1 {
   transform: scale(1.05);
 }
 
+.pettorali {
+  background-color: #b5def9 !important;
+}
+
+.dorsali {
+  background-color: #fdadad !important;
+}
+
+.spalle {
+  background-color: #ffdb92 !important;
+}
+
+.bicipiti {
+  background-color: #fffc9f !important;
+}
+
+.tricipiti {
+  background-color: #cdffa7 !important;
+}
+
+.quadricipiti {
+  background-color: #afaafa !important;
+}
+
+.femorali {
+  background-color: #ffa5e2 !important;
+}
+
+.glutei {
+  background-color: #e0a1ff !important;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
