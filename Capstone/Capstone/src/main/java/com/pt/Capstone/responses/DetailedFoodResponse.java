@@ -1,5 +1,6 @@
 package com.pt.Capstone.responses;
 
+import com.pt.Capstone.entities.Food;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,13 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExerciseResponse {
+public class DetailedFoodResponse {
 
     private Long id;
 
-    private String name;
+    private Integer quantity;
 
-    private String description;
-
-    private String muscleGroup;
+    private Food food;
 }

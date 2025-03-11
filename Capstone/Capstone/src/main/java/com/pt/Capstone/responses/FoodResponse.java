@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExerciseResponse {
+public class FoodResponse {
 
     private Long id;
 
     private String name;
 
-    private String description;
-
-    private String muscleGroup;
+    private Integer calories;
 }

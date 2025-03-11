@@ -52,9 +52,8 @@ public class ExerciseService {
     }
 
     public EntityPostResponse save(ExerciseRequest exerciseRequest) {
-        if (exerciseRepository.existsByName(exerciseRequest.getName())) {
+        if (exerciseRepository.existsByName(exerciseRequest.getName()))
             throw new EntityExistsException("Exercise with name: " + exerciseRequest.getName() + " already exists.");
-        }
         Exercise exercise = ExerciseFromRequest(exerciseRequest);
         exerciseRepository.save(exercise);
         return new EntityPostResponse(exercise.getId());
