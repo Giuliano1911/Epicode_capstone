@@ -305,7 +305,14 @@ function UpdateOrRegisterUser() {
                     </Button>
                   </Form>
                 )}
-                <Button onClick={() => navigate(-1)}>Torna indietro</Button>
+                <Button
+                  className="rounded-pill bg-white border text-black mb-3 text-uppercase"
+                  onClick={() => {
+                    navigate(-1)
+                  }}
+                >
+                  <i className="fas fa-caret-left me-2"></i>Torna indietro
+                </Button>
               </Col>
             </Row>
           </Container>

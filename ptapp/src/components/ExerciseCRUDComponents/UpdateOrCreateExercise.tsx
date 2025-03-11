@@ -268,7 +268,7 @@ function UpdateOrCreateExercise() {
                     </Form.Group>
                     <Button
                       type="submit"
-                      className="submit-button-bw rounded-pill bg-black border-0 greentext mb-5 mt-2 text-uppercase"
+                      className="submit-button-bw rounded-pill bg-black border-0 greentext mt-2 text-uppercase"
                     >
                       Registra
                     </Button>
@@ -433,12 +433,20 @@ function UpdateOrCreateExercise() {
                     </Form.Group>
                     <Button
                       type="submit"
-                      className="submit-button-bw rounded-pill bg-black border-0 greentext mb-5 mt-2 text-uppercase"
+                      className="submit-button-bw rounded-pill bg-black border-0 greentext mt-2 text-uppercase"
                     >
                       Modifica
                     </Button>
                   </Form>
                 )}
+                <Button
+                  className="rounded-pill bg-white border text-black my-3 text-uppercase"
+                  onClick={() => {
+                    navigate(-1)
+                  }}
+                >
+                  <i className="fas fa-caret-left me-2"></i>Torna indietro
+                </Button>
               </Col>
             </Row>
           </Container>

@@ -1,6 +1,6 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { URL } from '../../config/config'
 
 import TraininWeekResponse from '../../types/TrainingWeeksResponse'
@@ -16,12 +16,14 @@ function TrainingUpdate() {
   const role = localStorage.getItem('roles')
   const token = localStorage.getItem('token')
   const params = useParams()
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
   const [trainingWeek, setTrainingWeek] = useState<TraininWeekResponse>()
   const [exercises, setExercises] = useState<ExerciseResponse[]>([])
   const [isLoadingE, setIsLoadingE] = useState<boolean>(false)
   const [isErrorE, setIsErrorE] = useState<boolean>(false)
+  const [alert, setAlert] = useState<boolean>(false)
 
   const getTraining = async () => {
     fetch(URL + 'trainingWeek/' + params.id, {
@@ -81,6 +83,26 @@ function TrainingUpdate() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const deleteTrainingWeek = async () => {
+    try {
+      fetch(URL + 'trainingWeek/' + params.id, {
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + token!,
+        },
+      }).then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('Cannot delete')
+        }
+      })
+    } catch (error) {
+      console.log('Error', error)
+    }
+    navigate(-1)
+  }
+
   return (
     <>
       {role!.includes('CUSTOMER') && <NotFound />}
@@ -131,8 +153,41 @@ function TrainingUpdate() {
                       <TrainingDay exercises={exercises!} t={t} key={t.id} />
                     )
                   })}
-                  <Col className=" col-12">
-                    <Button></Button>
+                  <Col className=" col-12 mb-3">
+                    {alert && (
+                      <div className=" col-12 col-md-4 ms-2">
+                        <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
+                          Sei sicuro di volerla eliminare?
+                        </Alert>
+                        <button
+                          className="rounded bg-white"
+                          onClick={() => deleteTrainingWeek()}
+                        >
+                          Si
+                        </button>
+                        <button
+                          className="ms-4 rounded bg-white"
+                          onClick={() => setAlert(false)}
+                        >
+                          No
+                        </button>
+                      </div>
+                    )}
+                    <Button
+                      className="rounded-pill bg-danger border text-black mt-2 text-uppercase ms-2"
+                      onClick={() => setAlert(true)}
+                    >
+                      Elimina scheda
+                    </Button>
+                    <Button
+                      className="rounded-pill bg-white border text-black mt-2 text-uppercase ms-2"
+                      onClick={() => {
+                        navigate(-1)
+                      }}
+                    >
+                      <i className="fas fa-caret-left me-2"></i>Torna alla
+                      schermata utente
+                    </Button>
                   </Col>
                 </Row>
               )}
