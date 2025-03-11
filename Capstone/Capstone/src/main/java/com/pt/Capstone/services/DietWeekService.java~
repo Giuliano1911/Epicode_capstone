@@ -90,7 +90,6 @@ public class DietWeekService {
         mealRepository.save(meal8);
 
         dietDay2.setMeals(List.of(meal5, meal6, meal7, meal8));
-        dietDay2.setDay("Workout Day");
         dietDayRepository.save(dietDay2);
 
         dietWeek.getDietDays().add(dietDay1);

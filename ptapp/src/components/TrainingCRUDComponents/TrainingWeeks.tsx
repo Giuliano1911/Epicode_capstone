@@ -43,6 +43,7 @@ function TrainingWeeks() {
       })
       .catch((error) => {
         setIsError(true)
+        setIsLoading(false)
         console.log('Error', error)
       })
   }

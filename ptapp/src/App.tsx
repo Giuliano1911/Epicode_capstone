@@ -14,6 +14,8 @@ import Payment from './components/UserCRUDComponents/Payment'
 import UpdateOrCreateExercise from './components/ExerciseCRUDComponents/UpdateOrCreateExercise'
 import TrainingWeeks from './components/TrainingCRUDComponents/TrainingWeeks'
 import TrainingUpdate from './components/TrainingCRUDComponents/TrainingUpdate'
+import Alimentation from './components/FoodCRUDComponents/Alimentation'
+import UpdateOrCreatFood from './components/FoodCRUDComponents/UpdateOrCreatFood'
 
 function App() {
   return (
@@ -36,6 +38,12 @@ function App() {
           element={<TrainingWeeks key={Math.random()} />}
         />
         <Route path="/trainingWeeks/update/:id" element={<TrainingUpdate />} />
+        <Route
+          path="/alimentation"
+          element={<Alimentation key={Math.random()} />}
+        />
+        <Route path="/aliment/new" element={<UpdateOrCreatFood />} />
+        <Route path="/aliment/update/:id" element={<UpdateOrCreatFood />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
