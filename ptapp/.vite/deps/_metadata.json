@@ -1,15 +1,8 @@
 {
-<<<<<<< HEAD
-  "hash": "15d6a996",
-  "configHash": "9bed0833",
-  "lockfileHash": "e3b0c442",
-  "browserHash": "afe13af0",
-=======
   "hash": "ae704152",
   "configHash": "9bed0833",
   "lockfileHash": "3fc97482",
   "browserHash": "5e3640c3",
->>>>>>> java
   "optimized": {},
   "chunks": {}
 }
