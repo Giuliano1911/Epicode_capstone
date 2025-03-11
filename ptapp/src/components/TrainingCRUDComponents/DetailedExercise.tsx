@@ -158,11 +158,13 @@ function DetailedExercise({ e, token, exercises }: DetailedExerciseProps) {
                 min={1}
                 max={5}
                 required
-                value={detailedExercise.sets}
+                value={detailedExercise.sets || ''}
                 onChange={(e) =>
                   setDetailedExercise({
                     ...detailedExercise,
-                    sets: Number(e.target.value),
+                    sets: Number.isFinite(+e.target.value)
+                      ? +e.target.value
+                      : detailedExercise.sets,
                   })
                 }
               />
@@ -177,11 +179,13 @@ function DetailedExercise({ e, token, exercises }: DetailedExerciseProps) {
                 min={1}
                 max={100}
                 required
-                value={detailedExercise.reps}
+                value={detailedExercise.reps || ''}
                 onChange={(e) =>
                   setDetailedExercise({
                     ...detailedExercise,
-                    reps: Number(e.target.value),
+                    reps: Number.isFinite(+e.target.value)
+                      ? +e.target.value
+                      : detailedExercise.reps,
                   })
                 }
               />
@@ -196,11 +200,13 @@ function DetailedExercise({ e, token, exercises }: DetailedExerciseProps) {
                 min={1}
                 max={300}
                 required
-                value={detailedExercise.rest}
+                value={detailedExercise.rest || ''}
                 onChange={(e) =>
                   setDetailedExercise({
                     ...detailedExercise,
-                    rest: Number(e.target.value),
+                    rest: Number.isFinite(+e.target.value)
+                      ? +e.target.value
+                      : detailedExercise.rest,
                   })
                 }
               />
