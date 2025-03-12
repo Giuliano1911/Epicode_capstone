@@ -1,29 +1,28 @@
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { URL } from '../../config/config'
 
-import TraininWeekResponse from '../../types/TrainingWeeksResponse'
-
-import DashboardNav from '../DashboardNav'
+import DietWeekResponse from '../../types/DietWeekResponse'
 import NotFound from '../NotFound'
+import DashboardNav from '../DashboardNav'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
-import Training from './Training'
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import Diet from './Diet'
 
-function TrainingWeeks() {
+function DietWeeks() {
   const role = localStorage.getItem('roles')
   const token = localStorage.getItem('token')
   const params = useParams()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
-  const [trName, setTrName] = useState<string>('')
+  const [dietName, setDietName] = useState<string>('')
   const [isNew, setIsNew] = useState<boolean>(false)
-  const [trainingWeeks, setTrainingWeeks] = useState<TraininWeekResponse[]>([])
+  const [dietWeeks, setDietWeeks] = useState<DietWeekResponse[]>([])
 
-  const getUsers = async () => {
-    fetch(URL + 'trainingWeek/customer/' + params.id, {
+  const getDietWeeks = async () => {
+    fetch(URL + 'dietWeeks/customer/' + params.id, {
       headers: {
         Authorization: 'Bearer ' + token!,
       },
@@ -36,9 +35,9 @@ function TrainingWeeks() {
           throw new Error('Failed to retrieve data')
         }
       })
-      .then((data: TraininWeekResponse[]) => {
+      .then((data: DietWeekResponse[]) => {
         console.log(data)
-        setTrainingWeeks(data)
+        setDietWeeks(data)
         setIsLoading(false)
       })
       .catch((error) => {
@@ -49,7 +48,7 @@ function TrainingWeeks() {
   }
 
   useEffect(() => {
-    getUsers()
+    getDietWeeks()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -57,9 +56,9 @@ function TrainingWeeks() {
     e.preventDefault()
     setIsNew(false)
     try {
-      fetch(URL + 'trainingWeek/' + params.id, {
+      fetch(URL + 'dietWeeks/' + params.id, {
         method: 'POST',
-        body: JSON.stringify(trName),
+        body: JSON.stringify(dietName),
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token!,
@@ -72,7 +71,7 @@ function TrainingWeeks() {
             throw new Error('Creation error')
           }
         })
-        .then((response: TraininWeekResponse) => {
+        .then((response: DietWeekResponse) => {
           console.log(response)
         })
     } catch (error) {
@@ -98,20 +97,20 @@ function TrainingWeeks() {
                     className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
                     onClick={() => setIsNew(true)}
                   >
-                    Crea nuova scheda
+                    Crea nuova dieta
                   </Button>
                   {isNew && (
                     <Form onSubmit={(e) => handleSubmit(e)}>
                       <Form.Group className="mb-3" controlId="formBasicTrname">
                         <Form.Label className="ms-2 fw-bold">
-                          Nome della nuova scheda
+                          Nome della nuova dieta
                         </Form.Label>
                         <Form.Control
                           className="py-3"
                           type="text"
                           required
-                          value={trName}
-                          onChange={(e) => setTrName(e.target.value)}
+                          value={dietName}
+                          onChange={(e) => setDietName(e.target.value)}
                         />
                       </Form.Group>
                       <Button
@@ -132,13 +131,13 @@ function TrainingWeeks() {
                   </Button>
                 </Col>
                 <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
-                  {trainingWeeks[0] ? (
-                    <h2>Schede di {trainingWeeks[0].customerResponse.name}</h2>
+                  {dietWeeks[0] ? (
+                    <h2>Diete di {dietWeeks[0].customerResponse.name}</h2>
                   ) : (
-                    <h2>Ancora non ci sono schede</h2>
+                    <h2>Ancora non ci sono diete</h2>
                   )}
-                  {trainingWeeks.map((t) => {
-                    return <Training t={t} key={t.id} />
+                  {dietWeeks.map((d) => {
+                    return <Diet d={d} key={d.id} />
                   })}
                 </Col>
               </Row>
@@ -150,4 +149,4 @@ function TrainingWeeks() {
   )
 }
 
-export default TrainingWeeks
+export default DietWeeks

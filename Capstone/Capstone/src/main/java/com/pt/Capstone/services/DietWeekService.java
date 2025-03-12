@@ -74,19 +74,19 @@ public class DietWeekService {
         DietDay dietDay2 = new DietDay();
 
         Meal meal5 = new Meal();
-        meal1.setName("Breakfast");
+        meal5.setName("Breakfast");
         mealRepository.save(meal5);
 
         Meal meal6 = new Meal();
-        meal2.setName("Lunch");
+        meal6.setName("Lunch");
         mealRepository.save(meal6);
 
         Meal meal7 = new Meal();
-        meal3.setName("Dinner");
+        meal7.setName("Dinner");
         mealRepository.save(meal7);
 
         Meal meal8 = new Meal();
-        meal4.setName("Snack");
+        meal8.setName("Snack");
         mealRepository.save(meal8);
 
         dietDay2.setMeals(List.of(meal5, meal6, meal7, meal8));

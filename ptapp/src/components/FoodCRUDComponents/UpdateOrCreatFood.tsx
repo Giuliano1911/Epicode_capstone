@@ -119,7 +119,7 @@ function UpdateOrCreatFood() {
               <Col className="mt-3 col-12 col-md-10 col-lg-8">
                 {location.pathname === '/aliment/new' && (
                   <Form onSubmit={handleSubmit} className="mt-5">
-                    <Form.Group className="mb-3" controlId="formBasicExName">
+                    <Form.Group className="mb-3" controlId="formBasicFoodName">
                       <Form.Label className=" text-uppercase ms-2 fw-bold">
                         * Nome alimento
                       </Form.Label>
@@ -133,7 +133,7 @@ function UpdateOrCreatFood() {
                         }
                       />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicExName">
+                    <Form.Group className="mb-3" controlId="formBasicCalories">
                       <Form.Label className=" text-uppercase ms-2 fw-bold">
                         * Calorie per 100 grammi
                       </Form.Label>
@@ -168,7 +168,7 @@ function UpdateOrCreatFood() {
                 {isError && <FetchError />}
                 {!isError && !isLoading && (
                   <Form onSubmit={handleSubmit1} className="mt-5">
-                    <Form.Group className="mb-3" controlId="formBasicExName">
+                    <Form.Group className="mb-3" controlId="formBasicFoodName">
                       <Form.Label className=" text-uppercase ms-2 fw-bold">
                         * Nome alimento
                       </Form.Label>
@@ -182,7 +182,7 @@ function UpdateOrCreatFood() {
                         }
                       />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicExName">
+                    <Form.Group className="mb-3" controlId="formBasicCalories">
                       <Form.Label className=" text-uppercase ms-2 fw-bold">
                         * Calorie per 100 grammi
                       </Form.Label>

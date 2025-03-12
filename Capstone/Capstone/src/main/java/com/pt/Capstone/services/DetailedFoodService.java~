@@ -42,7 +42,6 @@ public class DetailedFoodService {
         DietDay dietDay = dietDayRepository.findById(dietDayId).orElseThrow(() -> new EntityNotFoundException("DietDay with id: " + dietDayId + " not found"));
         DetailedFood detailedFood = new DetailedFood();
         BeanUtils.copyProperties(detailedFoodRequest, detailedFood);
-        detailedFood.setFood(foodRepository.findById(detailedFoodRequest.getFoodId()).orElseThrow(() -> new EntityNotFoundException("Food with id: " + detailedFoodRequest.getFoodId() + " not found")));
         detailedFoodRepository.save(detailedFood);
         meal.getDetailedFoods().add(detailedFood);
         mealRepository.save(meal);

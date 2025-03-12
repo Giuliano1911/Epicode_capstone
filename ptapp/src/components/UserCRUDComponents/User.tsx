@@ -85,7 +85,10 @@ function User({ u, token }: UserProps) {
             Visualizza Schede
           </Button>
         </Link>
-        <Link className="text-decoration-none text-black" to={'/'}>
+        <Link
+          className="text-decoration-none text-black"
+          to={'/dietWeeks/' + u.id}
+        >
           <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold ms-2 me-2 mt-2">
             Visualizza Dieta
           </Button>

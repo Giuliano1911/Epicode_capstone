@@ -1,9 +1,9 @@
 import { Alert, Button, Card, Form } from 'react-bootstrap'
 import { FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router'
 import { URL } from '../../config/config'
 
 import DetailedExerciseResponse from '../../types/DetailedExerciseResponse'
-import { useNavigate } from 'react-router'
 import ExerciseResponse from '../../types/ExerciseResponse'
 
 interface DetailedExerciseProps {
