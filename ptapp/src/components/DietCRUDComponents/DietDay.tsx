@@ -1,6 +1,8 @@
 import { Card, Col } from 'react-bootstrap'
+
 import DietDayResponse from '../../types/DietDayResponse'
 import FoodResponse from '../../types/FoodResponse'
+
 import Meal from './Meal'
 
 interface DietDayProps {

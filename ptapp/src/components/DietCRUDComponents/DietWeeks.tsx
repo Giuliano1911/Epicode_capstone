@@ -1,13 +1,14 @@
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { URL } from '../../config/config'
 
 import DietWeekResponse from '../../types/DietWeekResponse'
+
 import NotFound from '../NotFound'
 import DashboardNav from '../DashboardNav'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import Diet from './Diet'
 
 function DietWeeks() {

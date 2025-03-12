@@ -108,7 +108,8 @@ public class CustomerService {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String token = jwtTokenUtil.generateToken(userDetails);
             List<String> roles = jwtTokenUtil.getRolesFromToken(token);
-            return new AuthResponse(token, roles);
+            Long id = jwtTokenUtil.getIdFromToken(token);
+            return new AuthResponse(token, roles, id);
         } catch (AuthenticationException e) {
             throw new SecurityException("Credentials are invalid", e);
         }
@@ -138,14 +139,6 @@ public class CustomerService {
         if (!passwordEncoder.matches(oldPassword, customer.getPassword()))
             throw new SecurityException("Old password is incorrect.");
         customer.setPassword(passwordEncoder.encode(password));
-        return customerResponseFromEntity(customerRepository.save(customer));
-    }
-
-    public CustomerResponse updateUsername(Long id, String username) {
-        Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
-        if (customerRepository.existsByUsername(username))
-            throw new EntityExistsException("User with username: " + username + " already exists.");
-        customer.setUsername(username);
         return customerResponseFromEntity(customerRepository.save(customer));
     }
 

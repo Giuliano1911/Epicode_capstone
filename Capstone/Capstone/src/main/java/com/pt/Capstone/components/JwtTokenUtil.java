@@ -1,9 +1,11 @@
 package com.pt.Capstone.components;
 
 
+import com.pt.Capstone.repositories.CustomerRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +18,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class JwtTokenUtil {
+
+    private final CustomerRepository customerRepository;
 
     @Value("${jwt.secret}")
     private String secret;
@@ -26,6 +31,10 @@ public class JwtTokenUtil {
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
+    }
+
+    public Long getIdFromToken(String token) {
+        return customerRepository.findByUsername(getUsernameFromToken(token)).get().getId();
     }
 
     public Date getExpirationDateFromToken(String token) {

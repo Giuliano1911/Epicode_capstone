@@ -1,9 +1,10 @@
+import { Alert, Button, Card, Form } from 'react-bootstrap'
 import { FormEvent, useState } from 'react'
-import DetailedFoodResponse from '../../types/DetailedFoodResponse'
-import FoodResponse from '../../types/FoodResponse'
 import { useNavigate } from 'react-router'
 import { URL } from '../../config/config'
-import { Alert, Button, Card, Form } from 'react-bootstrap'
+
+import DetailedFoodResponse from '../../types/DetailedFoodResponse'
+import FoodResponse from '../../types/FoodResponse'
 
 interface DetailedFoodProps {
   df: DetailedFoodResponse

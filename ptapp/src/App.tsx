@@ -18,6 +18,7 @@ import Alimentation from './components/FoodCRUDComponents/Alimentation'
 import UpdateOrCreatFood from './components/FoodCRUDComponents/UpdateOrCreatFood'
 import DietWeeks from './components/DietCRUDComponents/DietWeeks'
 import DietUpdate from './components/DietCRUDComponents/DietUpdate'
+import Dashboard from './components/UserComponents/Dashboard'
 
 function App() {
   return (
@@ -51,6 +52,9 @@ function App() {
           element={<DietWeeks key={Math.random()} />}
         />
         <Route path="/dietWeeks/update/:id" element={<DietUpdate />} />
+        <Route path="/dashboard/:id" element={<Dashboard />} />
+        <Route path="training/:id" />
+        <Route path="diet/:id" />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

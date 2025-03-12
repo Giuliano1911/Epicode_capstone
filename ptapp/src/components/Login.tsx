@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router'
 import { FormEvent, useState } from 'react'
 import { URL } from '../config/config'
@@ -21,6 +21,7 @@ function Login() {
 
   const [loginForm, setLoginForm] = useState<LoginForm>(initialLoginForm)
   const [visibility, setVisibility] = useState<boolean>(false)
+  const [wrong, setWrong] = useState<boolean>(false)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -34,8 +35,11 @@ function Login() {
       })
         .then((response) => {
           if (response.ok) {
+            setWrong(false)
             return response.json()
           } else {
+            setWrong(true)
+            setLoginForm(initialLoginForm)
             throw new Error('Login non riuscito')
           }
         })
@@ -44,7 +48,7 @@ function Login() {
           localStorage.setItem('token', data.token)
           localStorage.setItem('roles', data.roles[0])
           if (data.roles[0].includes('CUSTOMER')) {
-            navigate('/training')
+            navigate('/dashboard/' + data.id)
           } else {
             navigate('/users')
           }
@@ -125,6 +129,19 @@ function Login() {
                 EFFETTUA L'ACCESSO
               </Button>
             </div>
+            {wrong && (
+              <div>
+                <Alert variant="danger" className="mt-4">
+                  Username o Password errati, ritenta
+                </Alert>
+                <Button
+                  className="border-black bg-white text-black"
+                  onClick={() => setWrong(false)}
+                >
+                  Ok
+                </Button>
+              </div>
+            )}
           </Form>
         </Col>
       </Row>

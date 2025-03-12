@@ -1,28 +1,24 @@
 import { Button, Card } from 'react-bootstrap'
+import TraininWeekResponse from '../../types/TrainingWeeksResponse'
 import { Link } from 'react-router'
 
-import DietWeekResponse from '../../types/DietWeekResponse'
-
-interface DietProps {
-  d: DietWeekResponse
+interface TrainigUserProps {
+  t: TraininWeekResponse
 }
 
-function Diet({ d }: DietProps) {
+function TrainingUserList({ t }: TrainigUserProps) {
   return (
     <Card className="rounded-4">
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
-          <div>{d.name}</div>
-          <Link to={'/dietWeeks/update/' + d.id}>
-            <i className="fas fa-pencil-alt text-black"></i>
-          </Link>
+          <div>{t.name}</div>
         </Card.Title>
         <Link
           className="text-decoration-none text-black"
-          to={'/dietWeeks/update/' + d.id}
+          to={'/training/' + t.id}
         >
           <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold mt-2">
-            Visualizza Dieta
+            Visualizza Scheda
           </Button>
         </Link>
       </Card.Body>
@@ -30,4 +26,4 @@ function Diet({ d }: DietProps) {
   )
 }
 
-export default Diet
+export default TrainingUserList

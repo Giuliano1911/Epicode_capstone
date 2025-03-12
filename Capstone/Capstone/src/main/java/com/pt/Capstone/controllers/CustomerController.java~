@@ -58,7 +58,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasAnyRole('CUSTOMER' , 'PERSONALTRAINER')")
+    @PreAuthorize("hasRole('PERSONALTRAINER')")
     public CustomerResponse findById(@PathVariable Long id) {
         return customerService.findById(id);
     }

@@ -70,28 +70,7 @@ function DashboardNav({ role }: DashboardNavProps) {
             <>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="text-center ms-auto">
-                  <Link
-                    className={
-                      location.pathname === '/training'
-                        ? 'nav-link active greentext px-4'
-                        : 'nav-link greentext opacity-75 px-4'
-                    }
-                    to={'/training'}
-                  >
-                    SCHEDE
-                  </Link>
-                  <Link
-                    className={
-                      location.pathname === '/diet'
-                        ? 'nav-link active greentext px-4'
-                        : 'nav-link greentext opacity-75 px-4'
-                    }
-                    to={'/diet'}
-                  >
-                    ALIMENTAZIONE
-                  </Link>
-                </Nav>
+                <Nav className="text-center ms-auto"></Nav>
               </Navbar.Collapse>
             </>
           )}

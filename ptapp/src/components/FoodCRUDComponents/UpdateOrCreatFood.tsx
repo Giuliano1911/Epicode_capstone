@@ -1,10 +1,12 @@
-import { FormEvent, useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
+import { Col, Container, Row, Form, Button } from 'react-bootstrap'
+import { FormEvent, useEffect, useState } from 'react'
 import { URL } from '../../config/config'
+
 import FoodResponse from '../../types/FoodResponse'
+
 import NotFound from '../NotFound'
 import DashboardNav from '../DashboardNav'
-import { Col, Container, Row, Form, Button } from 'react-bootstrap'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 

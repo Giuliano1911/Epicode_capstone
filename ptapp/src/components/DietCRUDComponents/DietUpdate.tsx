@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react'
+import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router'
+import { useEffect, useState } from 'react'
 import { URL } from '../../config/config'
+
 import DietWeekResponse from '../../types/DietWeekResponse'
 import FoodResponse from '../../types/FoodResponse'
+
 import DashboardNav from '../DashboardNav'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
-import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import DietDay from './DietDay'
 import NotFound from '../NotFound'
 
