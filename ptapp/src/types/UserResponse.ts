@@ -5,4 +5,5 @@ export default interface UserResponse {
   dateOfBirth: string
   phoneNumber: string
   lastPaymentDate: string
+  avatar: string
 }

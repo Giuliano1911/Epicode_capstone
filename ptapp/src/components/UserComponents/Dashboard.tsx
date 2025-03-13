@@ -24,6 +24,8 @@ const initialchangePasswordState = {
   password: '',
 }
 
+const formData = new FormData()
+
 function Dashboard() {
   const role = localStorage.getItem('roles')
   const token = localStorage.getItem('token')
@@ -45,6 +47,8 @@ function Dashboard() {
   const [visibility, setVisibility] = useState<boolean>(false)
   const [wrong, setWrong] = useState<boolean>(false)
   const [same, setSame] = useState<boolean>(false)
+  const [changed, setChanged] = useState<boolean>(false)
+  const [image, setImage] = useState<boolean>(false)
 
   const getTrainings = async () => {
     fetch(URL + 'trainingWeek/customer/' + params.id, {
@@ -135,6 +139,8 @@ function Dashboard() {
     setNewPassword(initialchangePasswordState)
     setVisibility(false)
     setIsPassword(false)
+    setImage(false)
+    formData.delete('profile')
   }
 
   const handleSame = () => {
@@ -147,6 +153,34 @@ function Dashboard() {
     setNewPassword(initialchangePasswordState)
     setVisibility(false)
     setWrong(false)
+  }
+
+  const handleFileChange = (e) => {
+    formData.append('profile', e.target.files[0])
+  }
+
+  const putImage = async (e: FormEvent) => {
+    e.preventDefault()
+    fetch(URL + 'customers/avatar/' + params.id, {
+      method: 'PUT',
+      body: formData,
+      headers: {
+        Authorization: 'Bearer ' + token!,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          formData.delete('profile')
+          console.log(formData)
+          return response.json()
+        } else {
+          throw new Error('no ok')
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    navigate(0)
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -167,11 +201,12 @@ function Dashboard() {
           if (response.ok) {
             setNewPassword(initialchangePasswordState)
             setIsPassword(false)
+            setChanged(true)
             return response.json()
           } else {
             setWrong(true)
             setIsPassword(false)
-            throw new Error('Registration error')
+            throw new Error('Unable to change password')
           }
         })
       } catch (error) {
@@ -191,14 +226,37 @@ function Dashboard() {
               {isLoadingU && <FetchLoading />}
               {isErrorU && <FetchError />}
               {!isErrorU && !isLoadingU && (
-                <Row>
-                  <Col className="col-12 mt-4">
+                <Row className="d-flex align-items-center">
+                  <Col className="col-4 mt-4 d-flex justify-content-center">
+                    <img className="w-50 profileimage" src={user!.avatar}></img>
+                  </Col>
+                  <Col className="col-8">
                     <h2 className="fs-1">Benvenuto {user!.name}</h2>
                   </Col>
                 </Row>
               )}
+              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 border-end border-2 border-black">
+                <h2>Le tue schede</h2>
+                {isLoading && <FetchLoading />}
+                {isError && <FetchError />}
+                {!isError &&
+                  !isLoading &&
+                  trainingWeeks.map((t) => {
+                    return <TrainingUserList t={t} key={t.id} />
+                  })}
+              </Col>
+              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 border-end border-2 border-black">
+                <h2>Le tue diete</h2>
+                {isLoadingD && <FetchLoading />}
+                {isErrorD && <FetchError />}
+                {!isErrorD &&
+                  !isLoadingD &&
+                  dietWeeks.map((d) => {
+                    return <DietUserList d={d} key={d.id} />
+                  })}
+              </Col>
               <Col className="col-12 col-md-4 mt-4 d-flex flex-column gap-4">
-                <h2>Impostazioni</h2>
+                <h2 className=" overflow-hidden">Impostazioni</h2>
                 <Button
                   className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
                   onClick={() => setIsPassword(true)}
@@ -207,7 +265,7 @@ function Dashboard() {
                 </Button>
                 <Button
                   className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
-                  onClick={() => navigate('')}
+                  onClick={() => setImage(true)}
                 >
                   Cambia immagine profilo
                 </Button>
@@ -236,6 +294,22 @@ function Dashboard() {
                       <Button
                         className="border-black bg-white text-black"
                         onClick={() => handleWrong()}
+                      >
+                        Ok
+                      </Button>
+                    </div>
+                  </>
+                )}
+                {changed && (
+                  <>
+                    <div>
+                      <hr />
+                      <Alert className="submit-button-login border-0 px-4 fw-bold w-100">
+                        Password cambiata con successo
+                      </Alert>
+                      <Button
+                        className="border-black bg-white text-black"
+                        onClick={() => setChanged(false)}
                       >
                         Ok
                       </Button>
@@ -314,6 +388,7 @@ function Dashboard() {
                       Cambia password
                     </Button>
                     <Button
+                      type="button"
                       className="rounded-pill bg-white border mt-3 text-black text-uppercase"
                       onClick={() => {
                         handleBack()
@@ -323,26 +398,43 @@ function Dashboard() {
                     </Button>
                   </Form>
                 )}
-              </Col>
-              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
-                <h2>Le tue schede</h2>
-                {isLoading && <FetchLoading />}
-                {isError && <FetchError />}
-                {!isError &&
-                  !isLoading &&
-                  trainingWeeks.map((t) => {
-                    return <TrainingUserList t={t} key={t.id} />
-                  })}
-              </Col>
-              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
-                <h2>Le tue diete</h2>
-                {isLoadingD && <FetchLoading />}
-                {isErrorD && <FetchError />}
-                {!isErrorD &&
-                  !isLoadingD &&
-                  dietWeeks.map((d) => {
-                    return <DietUserList d={d} key={d.id} />
-                  })}
+                {image && (
+                  <Form
+                    onSubmit={(e) => {
+                      putImage(e)
+                    }}
+                  >
+                    <Form.Group className="mb-3">
+                      <Form.Label className="mb-0">
+                        Carica l'immagine
+                      </Form.Label>
+                      <Form.Control
+                        className="form border-dark "
+                        type="file"
+                        placeholder="Scegi immagine"
+                        onChange={(e) => {
+                          handleFileChange(e)
+                        }}
+                      />
+                    </Form.Group>
+                    <Button
+                      type="submit"
+                      className="submit-button-bw rounded-pill me-2 bg-black border-0 greentext text-uppercase"
+                      onClick={() => console.log()}
+                    >
+                      Salva
+                    </Button>
+                    <Button
+                      type="button"
+                      className="rounded-pill bg-white border text-black text-uppercase"
+                      onClick={() => {
+                        handleBack()
+                      }}
+                    >
+                      <i className="fas fa-caret-left me-2"></i>Torna indietro
+                    </Button>
+                  </Form>
+                )}
               </Col>
             </Row>
           </Container>

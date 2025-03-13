@@ -147,4 +147,10 @@ public class CustomerService {
         customer.setLastPaymentDate(lastPaymentDate);
         return customerResponseFromEntity(customerRepository.save(customer));
     }
+
+    public CustomerResponse updateAvatar(Long id, String avatar) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id: " + id + " not found"));
+        customer.setAvatar(avatar);
+        return customerResponseFromEntity(customerRepository.save(customer));
+    }
 }

@@ -1,16 +1,21 @@
 package com.pt.Capstone.controllers;
 
+import com.cloudinary.Cloudinary;
+import com.pt.Capstone.entities.Customer;
 import com.pt.Capstone.requests.*;
 import com.pt.Capstone.responses.AuthResponse;
 import com.pt.Capstone.responses.CustomerResponse;
 import com.pt.Capstone.services.CustomerService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,6 +27,7 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final Cloudinary cloudinary;
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
@@ -92,5 +98,19 @@ public class CustomerController {
     public CustomerResponse updateLastPaymentDate(@PathVariable Long id, @RequestBody LastPaymentRequest lastPaymentRequest) {
         LocalDate lastPaymentDate = lastPaymentRequest.getLastPaymentDate();
         return customerService.updateLastPaymentDate(id, lastPaymentDate);
+    }
+
+    @PutMapping(value ="/avatar/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('CUSTOMER')")
+    public CustomerResponse updateAvatar(@PathVariable Long id, @RequestPart("profile") MultipartFile file) {
+        try{ var result = cloudinary.uploader().upload(
+                file.getBytes(), Cloudinary.asMap("folder", "CustomerAvatar", "public_id", file.getOriginalFilename())
+        );
+            String url = result.get("secure_url").toString();
+            return this.customerService.updateAvatar(id, url);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

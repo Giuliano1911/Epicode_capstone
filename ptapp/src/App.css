@@ -32,6 +32,11 @@ h1 {
   height: 30px !important;
 }
 
+.profileimage {
+  max-width: 200px;
+  max-height: 200px;
+}
+
 #reviews p {
   display: -webkit-box;
   -webkit-line-clamp: 3;

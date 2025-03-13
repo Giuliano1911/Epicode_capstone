@@ -132,7 +132,8 @@ function Login() {
             {wrong && (
               <div>
                 <Alert variant="danger" className="mt-4">
-                  Username o Password errati, ritenta
+                  Username o Password errati, assicurati di non avere CAPS LOCK
+                  attivo
                 </Alert>
                 <Button
                   className="border-black bg-white text-black"

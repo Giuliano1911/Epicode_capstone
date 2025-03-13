@@ -1,4 +1,4 @@
-import { Alert, Button, Card } from 'react-bootstrap'
+import { Alert, Button, Card, Col, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router'
 import { useState } from 'react'
 import { URL } from '../../config/config'
@@ -37,46 +37,55 @@ function User({ u, token }: UserProps) {
   return (
     <Card className="rounded-4">
       <Card.Body>
-        <Card.Title className="d-flex justify-content-between">
-          <div>
-            {u.name} {u.surname}
-          </div>
-          <div className="text-end">
-            <Link to={'/users/update/' + u.id}>
-              <i className="fas fa-pencil-alt text-black"></i>
-            </Link>
-            <button
-              className=" border-0 bg-white ms-4"
-              onClick={() => setAlert(true)}
-            >
-              <i className="fas fa-trash-alt text-black"></i>
-            </button>
-            {alert && (
+        <Row>
+          <Col className="col-4">
+            <img className="w-75 profileimage" src={u.avatar} />
+          </Col>
+          <Col className="col-8 p-0">
+            <Card.Title className="d-flex justify-content-between">
               <div>
-                <Alert variant="danger" className="rounded-4 mt-2">
-                  Sei sicuro di volerlo eliminare?
-                </Alert>
-                <button
-                  className="rounded bg-white"
-                  onClick={() => deleteUser()}
-                >
-                  Si
-                </button>
-                <button
-                  className="ms-4 rounded bg-white"
-                  onClick={() => setAlert(false)}
-                >
-                  No
-                </button>
+                {u.name} {u.surname}
               </div>
-            )}
-          </div>
-        </Card.Title>
-        <Card.Text className="mb-0">Data di nascita: {u.dateOfBirth}</Card.Text>
-        <Card.Text className="mb-0">
-          Numero di telefono: {u.phoneNumber}
-        </Card.Text>
-        <Card.Text>Ultimo pagamento: {u.lastPaymentDate}</Card.Text>
+              <div className="text-end">
+                <Link to={'/users/update/' + u.id}>
+                  <i className="fas fa-pencil-alt text-black"></i>
+                </Link>
+                <button
+                  className=" border-0 bg-white ms-4"
+                  onClick={() => setAlert(true)}
+                >
+                  <i className="fas fa-trash-alt text-black"></i>
+                </button>
+                {alert && (
+                  <div>
+                    <Alert variant="danger" className="rounded-4 mt-2">
+                      Sei sicuro di volerlo eliminare?
+                    </Alert>
+                    <button
+                      className="rounded bg-white"
+                      onClick={() => deleteUser()}
+                    >
+                      Si
+                    </button>
+                    <button
+                      className="ms-4 rounded bg-white"
+                      onClick={() => setAlert(false)}
+                    >
+                      No
+                    </button>
+                  </div>
+                )}
+              </div>
+            </Card.Title>
+            <Card.Text className="mb-0">
+              Data di nascita: {u.dateOfBirth}
+            </Card.Text>
+            <Card.Text className="mb-0">
+              Numero di telefono: {u.phoneNumber}
+            </Card.Text>
+            <Card.Text>Ultimo pagamento: {u.lastPaymentDate}</Card.Text>
+          </Col>
+        </Row>
         <Link
           className="text-decoration-none text-black"
           to={'/trainingWeeks/' + u.id}

@@ -37,6 +37,8 @@ public class Customer {
 
     private LocalDate lastPaymentDate;
 
+    private String avatar = "https://res.cloudinary.com/dmalqg6rj/image/upload/v1741866174/CustomerAvatar/standardpic.png";
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
