@@ -61,6 +61,7 @@ function App() {
           element={<TrainingUpdate key={Math.random()} />}
         />
         <Route path="diet/:id" element={<DietUpdate key={Math.random()} />} />
+        <Route />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
