@@ -24,6 +24,7 @@ public class FoodController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('CUSTOMER' , 'PERSONALTRAINER')")
     public List<FoodResponse> findAll() {
         return foodService.findAll();
     }

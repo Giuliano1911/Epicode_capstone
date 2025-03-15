@@ -27,9 +27,9 @@ const initialRegisterState = {
 
 function Meal({ d, m, foods }: DietDayProps) {
   const token = localStorage.getItem('token')
+  const role = localStorage.getItem('roles')
   const navigate = useNavigate()
   const [isAdd, setIsAdd] = useState<boolean>(false)
-
   const [detailedFood, setDetailedFood] =
     useState<DetailedFoodRegister>(initialRegisterState)
 
@@ -64,19 +64,38 @@ function Meal({ d, m, foods }: DietDayProps) {
 
   return (
     <Card className=" border-bottom-0 border-start-0 border-end-0 border-top border-2 rounded-0 py-2">
-      <Card.Title>{m.name}</Card.Title>
+      <Card.Title className=" d-flex justify-content-between">
+        {m.name}
+        <div>
+          {m.detailedFoods.reduce(
+            (acc, df) => acc + (df.food.calories * df.quantity) / 100,
+            0
+          )}{' '}
+          calorie
+        </div>
+      </Card.Title>
       {m.detailedFoods.map((df) => {
-        return <DetailedFood df={df} foods={foods} token={token!} key={df.id} />
+        return (
+          <DetailedFood
+            df={df}
+            foods={foods}
+            token={token!}
+            role={role!}
+            key={df.id}
+          />
+        )
       })}
-      <button
-        className="d-flex align-items-center border-0 bg-white"
-        onClick={() => {
-          setIsAdd(true)
-        }}
-      >
-        <i className="fas fa-plus me-2"></i>
-        <p className="fw-bold mb-0">Aggiungi alimento</p>
-      </button>
+      {role!.includes('PERSONALTRAINER') && (
+        <button
+          className="d-flex align-items-center border-0 bg-white"
+          onClick={() => {
+            setIsAdd(true)
+          }}
+        >
+          <i className="fas fa-plus me-2"></i>
+          <p className="fw-bold mb-0">Aggiungi alimento</p>
+        </button>
+      )}
       {isAdd && (
         <Form className="mt-3" onSubmit={(e) => handleSubmit(e)}>
           <Form.Group

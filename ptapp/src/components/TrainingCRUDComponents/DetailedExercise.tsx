@@ -9,6 +9,7 @@ import ExerciseResponse from '../../types/ExerciseResponse'
 interface DetailedExerciseProps {
   e: DetailedExerciseResponse
   token: string
+  role: string
   exercises: ExerciseResponse[]
 }
 
@@ -19,14 +20,19 @@ interface DetailedExerciseRegister {
   rest: number
 }
 
-function DetailedExercise({ e, token, exercises }: DetailedExerciseProps) {
+function DetailedExercise({
+  e,
+  token,
+  role,
+  exercises,
+}: DetailedExerciseProps) {
   const detailedExerciseState = {
     exerciseId: e.exercise.id,
     reps: e.reps,
     sets: e.sets,
     rest: e.rest,
   }
-
+  const [isDetail, setIsDetail] = useState<boolean>(false)
   const [alert, setAlert] = useState<boolean>(false)
   const navigate = useNavigate()
   const [isMod, setIsMod] = useState<boolean>(false)
@@ -81,42 +87,60 @@ function DetailedExercise({ e, token, exercises }: DetailedExerciseProps) {
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
           {e.exercise.name}
-          <div className="text-end">
-            <button
-              className={e.exercise.muscleGroup + ' border-0 bg-white'}
-              onClick={() => setIsMod(true)}
+          {role.includes('PERSONALTRAINER') && (
+            <div className="text-end">
+              <button
+                className={e.exercise.muscleGroup + ' border-0 bg-white'}
+                onClick={() => setIsMod(true)}
+              >
+                <i className="fas fa-pencil-alt text-black"></i>
+              </button>
+              <button
+                className={e.exercise.muscleGroup + ' border-0 bg-white ms-2'}
+                onClick={() => setAlert(true)}
+              >
+                <i className="fas fa-trash-alt text-black"></i>
+              </button>
+              {alert && (
+                <div>
+                  <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
+                    Sei sicuro di volerlo eliminare?
+                  </Alert>
+                  <button
+                    className="rounded bg-white"
+                    onClick={() => deleteDetailedEx()}
+                  >
+                    Si
+                  </button>
+                  <button
+                    className="ms-4 rounded bg-white"
+                    onClick={() => setAlert(false)}
+                  >
+                    No
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+          {role.includes('CUSTOMER') && !isDetail && (
+            <Button
+              className={e.exercise.muscleGroup + ' border-0 + text-black'}
+              onClick={() => setIsDetail(true)}
             >
-              <i className="fas fa-pencil-alt text-black"></i>
-            </button>
-            <button
-              className={e.exercise.muscleGroup + ' border-0 bg-white ms-2'}
-              onClick={() => setAlert(true)}
+              <i className="fas fa-eye me-2"></i>
+            </Button>
+          )}
+          {role.includes('CUSTOMER') && isDetail && (
+            <Button
+              className={e.exercise.muscleGroup + ' border-0 + text-black'}
+              onClick={() => setIsDetail(false)}
             >
-              <i className="fas fa-trash-alt text-black"></i>
-            </button>
-            {alert && (
-              <div>
-                <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
-                  Sei sicuro di volerlo eliminare?
-                </Alert>
-                <button
-                  className="rounded bg-white"
-                  onClick={() => deleteDetailedEx()}
-                >
-                  Si
-                </button>
-                <button
-                  className="ms-4 rounded bg-white"
-                  onClick={() => setAlert(false)}
-                >
-                  No
-                </button>
-              </div>
-            )}
-          </div>
+              <i className="fas fa-times me-2"></i>
+            </Button>
+          )}
         </Card.Title>
         <Card.Text className="mb-0">
-          {e.sets} serie da {e.reps}
+          {e.sets} serie da {e.reps} ripetizioni
         </Card.Text>
         <Card.Text>Rest: {e.rest} secondi</Card.Text>
         {isMod && (
@@ -125,7 +149,7 @@ function DetailedExercise({ e, token, exercises }: DetailedExerciseProps) {
               className="mb-3 d-flex flex-column"
               controlId="formBasicUsername"
             >
-              <Form.Label className=" text-uppercase ms-2 fw-bold">
+              <Form.Label className=" text-uppercase ms-2 fw-bold ">
                 * Esercizio
               </Form.Label>
               <select
@@ -225,6 +249,14 @@ function DetailedExercise({ e, token, exercises }: DetailedExerciseProps) {
               Indietro
             </Button>
           </Form>
+        )}
+        {isDetail && (
+          <>
+            <Card.Text className="mb-0">
+              Muscolo principale coinvolto: {e.exercise.muscleGroup}
+            </Card.Text>
+            <Card.Text>Esecuzione: {e.exercise.description}</Card.Text>
+          </>
         )}
       </Card.Body>
     </Card>

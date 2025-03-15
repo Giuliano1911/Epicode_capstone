@@ -156,7 +156,7 @@ function Dashboard() {
   }
 
   const handleFileChange = (e) => {
-    formData.append('profile', e.target.files[0])
+    formData.append('profile', e.target.files![0])
   }
 
   const putImage = async (e: FormEvent) => {

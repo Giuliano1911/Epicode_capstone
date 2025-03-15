@@ -51,10 +51,16 @@ function App() {
           path="/dietWeeks/:id"
           element={<DietWeeks key={Math.random()} />}
         />
-        <Route path="/dietWeeks/update/:id" element={<DietUpdate />} />
+        <Route
+          path="/dietWeeks/update/:id"
+          element={<DietUpdate key={Math.random()} />}
+        />
         <Route path="/dashboard/:id" element={<Dashboard />} />
-        <Route path="training/:id" />
-        <Route path="diet/:id" />
+        <Route
+          path="training/:id"
+          element={<TrainingUpdate key={Math.random()} />}
+        />
+        <Route path="diet/:id" element={<DietUpdate key={Math.random()} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

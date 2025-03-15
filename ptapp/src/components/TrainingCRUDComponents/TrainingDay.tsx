@@ -10,6 +10,7 @@ import ExerciseResponse from '../../types/ExerciseResponse'
 
 interface TrainingDayProps {
   t: TrainingDayResponse
+  role: string
   exercises: ExerciseResponse[]
 }
 
@@ -27,7 +28,7 @@ const initialDetailedExerciseState = {
   rest: '',
 }
 
-function TrainingDay({ t, exercises }: TrainingDayProps) {
+function TrainingDay({ t, exercises, role }: TrainingDayProps) {
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
   const [isAdd, setIsAdd] = useState<boolean>(false)
@@ -76,20 +77,23 @@ function TrainingDay({ t, exercises }: TrainingDayProps) {
               <DetailedExercise
                 exercises={exercises}
                 token={token!}
+                role={role!}
                 e={e}
                 key={e.id}
               />
             )
           })}
-          <button
-            className="d-flex align-items-center border-0 bg-white"
-            onClick={() => {
-              setIsAdd(true)
-            }}
-          >
-            <i className="fas fa-plus me-2"></i>
-            <p className="fw-bold mb-0">Aggiungi esercizio</p>
-          </button>
+          {role.includes('PERSONALTRAINER') && (
+            <button
+              className="d-flex align-items-center border-0 bg-white"
+              onClick={() => {
+                setIsAdd(true)
+              }}
+            >
+              <i className="fas fa-plus me-2"></i>
+              <p className="fw-bold mb-0">Aggiungi esercizio</p>
+            </button>
+          )}
           {isAdd && (
             <Form className="mt-3" onSubmit={(e) => handleSubmit(e)}>
               <Form.Group

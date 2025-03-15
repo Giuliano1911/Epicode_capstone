@@ -24,6 +24,7 @@ public class ExerciseController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('CUSTOMER' , 'PERSONALTRAINER')")
     public List<ExerciseResponse> findAll() {
         return exerciseService.findAll();
     }

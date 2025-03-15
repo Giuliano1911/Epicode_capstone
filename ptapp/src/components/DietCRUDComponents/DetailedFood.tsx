@@ -10,6 +10,7 @@ interface DetailedFoodProps {
   df: DetailedFoodResponse
   foods: FoodResponse[]
   token: string
+  role: string
 }
 
 interface DetailedFoodRegister {
@@ -17,7 +18,7 @@ interface DetailedFoodRegister {
   quantity: number
 }
 
-function DetailedFood({ df, foods, token }: DetailedFoodProps) {
+function DetailedFood({ df, foods, token, role }: DetailedFoodProps) {
   const detailedFoodState = {
     foodId: df.food.id,
     quantity: df.quantity,
@@ -77,39 +78,41 @@ function DetailedFood({ df, foods, token }: DetailedFoodProps) {
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
           {df.food.name}
-          <div className="text-end">
-            <button
-              className="border-0 bg-white"
-              onClick={() => setIsMod(true)}
-            >
-              <i className="fas fa-pencil-alt text-black"></i>
-            </button>
-            <button
-              className="border-0 bg-white ms-2"
-              onClick={() => setAlert(true)}
-            >
-              <i className="fas fa-trash-alt text-black"></i>
-            </button>
-            {alert && (
-              <div>
-                <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
-                  Sei sicuro di volerlo eliminare?
-                </Alert>
-                <button
-                  className="rounded bg-white"
-                  onClick={() => deleteDetailedFood()}
-                >
-                  Si
-                </button>
-                <button
-                  className="ms-4 rounded bg-white"
-                  onClick={() => setAlert(false)}
-                >
-                  No
-                </button>
-              </div>
-            )}
-          </div>
+          {role!.includes('PERSONALTRAINER') && (
+            <div className="text-end">
+              <button
+                className="border-0 bg-white"
+                onClick={() => setIsMod(true)}
+              >
+                <i className="fas fa-pencil-alt text-black"></i>
+              </button>
+              <button
+                className="border-0 bg-white ms-2"
+                onClick={() => setAlert(true)}
+              >
+                <i className="fas fa-trash-alt text-black"></i>
+              </button>
+              {alert && (
+                <div>
+                  <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
+                    Sei sicuro di volerlo eliminare?
+                  </Alert>
+                  <button
+                    className="rounded bg-white"
+                    onClick={() => deleteDetailedFood()}
+                  >
+                    Si
+                  </button>
+                  <button
+                    className="ms-4 rounded bg-white"
+                    onClick={() => setAlert(false)}
+                  >
+                    No
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </Card.Title>
         <Card.Text className="mb-0">{df.quantity} grammi</Card.Text>
         {isMod && (

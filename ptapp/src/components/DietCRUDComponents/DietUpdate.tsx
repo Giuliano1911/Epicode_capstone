@@ -10,7 +10,6 @@ import DashboardNav from '../DashboardNav'
 import FetchLoading from '../FetchLoading'
 import FetchError from '../FetchError'
 import DietDay from './DietDay'
-import NotFound from '../NotFound'
 
 function DietUpdate() {
   const role = localStorage.getItem('roles')
@@ -105,67 +104,64 @@ function DietUpdate() {
 
   return (
     <>
-      {role!.includes('CUSTOMER') && <NotFound />}
-      {role!.includes('PERSONALTRAINER') && (
-        <>
-          <DashboardNav role={role!} />
-          {isLoading && <FetchLoading />}
-          {isError && <FetchError />}
-          {!isError && !isLoading && (
-            <Container fluid className="mt-5 pt-5">
-              <Row className=" justify-content-center">
-                <Col className=" col-12 text-center mt-3">
-                  <h2>{dietWeek!.name}</h2>
-                </Col>
-              </Row>
-              {isLoadingF && <FetchLoading />}
-              {isErrorF && <FetchError />}
-              {!isErrorF && !isLoadingF && (
-                <Row>
-                  {dietWeek!.dietDays.map((d) => {
-                    return <DietDay foods={foods!} d={d} key={d.id} />
-                  })}
-                  <Col className=" col-12 mb-3">
-                    {alert && (
-                      <div className=" col-12 col-md-6 ms-2">
-                        <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
-                          Sei sicuro di volerla eliminare?
-                        </Alert>
-                        <button
-                          className="rounded bg-white"
-                          onClick={() => deleteDiet()}
-                        >
-                          Si
-                        </button>
-                        <button
-                          className="ms-4 rounded bg-white"
-                          onClick={() => setAlert(false)}
-                        >
-                          No
-                        </button>
-                      </div>
-                    )}
-                    <Button
-                      className="rounded-pill bg-danger border text-black mt-2 text-uppercase ms-2"
-                      onClick={() => setAlert(true)}
+      <DashboardNav role={role!} />
+      {isLoading && <FetchLoading />}
+      {isError && <FetchError />}
+      {!isError && !isLoading && (
+        <Container fluid className="mt-5 pt-5">
+          <Row className=" justify-content-center">
+            <Col className=" col-12 text-center mt-3">
+              <h2>{dietWeek!.name}</h2>
+            </Col>
+          </Row>
+          {isLoadingF && <FetchLoading />}
+          {isErrorF && <FetchError />}
+          {!isErrorF && !isLoadingF && (
+            <Row>
+              {dietWeek!.dietDays.map((d) => {
+                return <DietDay foods={foods!} d={d} key={d.id} />
+              })}
+              <Col className=" col-12 mb-3">
+                {alert && (
+                  <div className=" col-12 col-md-6 ms-2">
+                    <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
+                      Sei sicuro di volerla eliminare?
+                    </Alert>
+                    <button
+                      className="rounded bg-white"
+                      onClick={() => deleteDiet()}
                     >
-                      Elimina dieta
-                    </Button>
-                    <Button
-                      className="rounded-pill bg-white border text-black mt-2 text-uppercase ms-2"
-                      onClick={() => {
-                        navigate(-1)
-                      }}
+                      Si
+                    </button>
+                    <button
+                      className="ms-4 rounded bg-white"
+                      onClick={() => setAlert(false)}
                     >
-                      <i className="fas fa-caret-left me-2"></i>Torna alla
-                      schermata utente
-                    </Button>
-                  </Col>
-                </Row>
-              )}
-            </Container>
+                      No
+                    </button>
+                  </div>
+                )}
+                {role!.includes('PERSONALTRAINER') && (
+                  <Button
+                    className="rounded-pill bg-danger border text-black mt-2 text-uppercase ms-2"
+                    onClick={() => setAlert(true)}
+                  >
+                    Elimina dieta
+                  </Button>
+                )}
+                <Button
+                  className="rounded-pill bg-white border text-black mt-2 text-uppercase ms-2"
+                  onClick={() => {
+                    navigate(-1)
+                  }}
+                >
+                  <i className="fas fa-caret-left me-2"></i>Torna alla schermata
+                  utente
+                </Button>
+              </Col>
+            </Row>
           )}
-        </>
+        </Container>
       )}
     </>
   )

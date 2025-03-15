@@ -13,10 +13,7 @@ function DietUserList({ d }: DietUserProps) {
         <Card.Title className="d-flex justify-content-between">
           <div>{d.name}</div>
         </Card.Title>
-        <Link
-          className="text-decoration-none text-black"
-          to={'/dietWeeks/' + d.id}
-        >
+        <Link className="text-decoration-none text-black" to={'/diet/' + d.id}>
           <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold mt-2">
             Visualizza Dieta
           </Button>
