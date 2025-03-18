@@ -147,7 +147,7 @@ function DetailedExercise({
           <Form className="mt-3" onSubmit={(e) => handleSubmit(e)}>
             <Form.Group
               className="mb-3 d-flex flex-column"
-              controlId="formBasicUsername"
+              controlId="formBasicExercise"
             >
               <Form.Label className=" text-uppercase ms-2 fw-bold ">
                 * Esercizio

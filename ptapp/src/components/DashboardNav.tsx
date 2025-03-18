@@ -62,13 +62,26 @@ function DashboardNav({ role }: DashboardNavProps) {
                   >
                     ALIMENTAZIONE
                   </Link>
+                  <Link
+                    className={
+                      location.pathname === '/calendar/1'
+                        ? 'nav-link active greentext px-4'
+                        : 'nav-link greentext opacity-75 px-4'
+                    }
+                    to={'/calendar/1'}
+                  >
+                    CALENDARIO
+                  </Link>
                 </Nav>
               </Navbar.Collapse>
             </>
           )}
           {role.includes('CUSTOMER') && (
             <>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Toggle
+                aria-controls="responsive-navbar-nav"
+                className="d-none"
+              />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="text-center ms-auto"></Nav>
               </Navbar.Collapse>

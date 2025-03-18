@@ -70,7 +70,7 @@ function Food({ f, token }: FoodProps) {
             )}
           </div>
         </Card.Title>
-        <Card.Text>Calorie per 100 grammi: {f.calories}</Card.Text>
+        <Card.Text>{f.calories} kcal/100g</Card.Text>
       </Card.Body>
     </Card>
   )

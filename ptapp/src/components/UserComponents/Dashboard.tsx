@@ -159,6 +159,16 @@ function Dashboard() {
     formData.append('profile', e.target.files![0])
   }
 
+  const handlePasswordClick = () => {
+    setIsPassword(true)
+    setImage(false)
+  }
+
+  const handleImageClick = () => {
+    setIsPassword(false)
+    setImage(true)
+  }
+
   const putImage = async (e: FormEvent) => {
     e.preventDefault()
     fetch(URL + 'customers/avatar/' + params.id, {
@@ -222,20 +232,23 @@ function Dashboard() {
         <>
           <DashboardNav role={role!} />
           <Container fluid className="mt-5 pt-5">
-            <Row>
+            <Row className=" justify-content-around">
               {isLoadingU && <FetchLoading />}
               {isErrorU && <FetchError />}
               {!isErrorU && !isLoadingU && (
                 <Row className="d-flex align-items-center">
                   <Col className="col-4 mt-4 d-flex justify-content-center">
-                    <img className="w-50 profileimage" src={user!.avatar}></img>
+                    <img
+                      className="profileimage rounded-circle border object-fit-cover"
+                      src={user!.avatar}
+                    />
                   </Col>
-                  <Col className="col-8">
+                  <Col className="col-8 text-end text-md-start">
                     <h2 className="fs-1">Benvenuto {user!.name}</h2>
                   </Col>
                 </Row>
               )}
-              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 border-end border-2 border-black">
+              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 h-100">
                 <h2>Le tue schede</h2>
                 {isLoading && <FetchLoading />}
                 {isError && <FetchError />}
@@ -245,7 +258,7 @@ function Dashboard() {
                     return <TrainingUserList t={t} key={t.id} />
                   })}
               </Col>
-              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 border-end border-2 border-black">
+              <Col className="col-12 col-md-4 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 h-100">
                 <h2>Le tue diete</h2>
                 {isLoadingD && <FetchLoading />}
                 {isErrorD && <FetchError />}
@@ -255,19 +268,25 @@ function Dashboard() {
                     return <DietUserList d={d} key={d.id} />
                   })}
               </Col>
-              <Col className="col-12 col-md-4 mt-4 d-flex flex-column gap-4">
+              <Col className="col-12 col-md-3 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 d-flex flex-column gap-4 py-3 h-100">
                 <h2 className=" overflow-hidden">Impostazioni</h2>
                 <Button
                   className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
-                  onClick={() => setIsPassword(true)}
+                  onClick={() => handlePasswordClick()}
                 >
                   Cambia password
                 </Button>
                 <Button
                   className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
-                  onClick={() => setImage(true)}
+                  onClick={() => handleImageClick()}
                 >
                   Cambia immagine profilo
+                </Button>
+                <Button
+                  className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
+                  onClick={() => navigate('/calendar/' + params.id)}
+                >
+                  Vedi i tuoi appuntamenti
                 </Button>
                 {same && (
                   <>
@@ -394,7 +413,7 @@ function Dashboard() {
                         handleBack()
                       }}
                     >
-                      <i className="fas fa-caret-left me-2"></i>Torna indietro
+                      <i className="fas fa-chevron-up"></i> Chiudi
                     </Button>
                   </Form>
                 )}
@@ -431,7 +450,7 @@ function Dashboard() {
                         handleBack()
                       }}
                     >
-                      <i className="fas fa-caret-left me-2"></i>Torna indietro
+                      <i className="fas fa-chevron-up"></i> Chiudi
                     </Button>
                   </Form>
                 )}

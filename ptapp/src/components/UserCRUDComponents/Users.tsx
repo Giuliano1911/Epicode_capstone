@@ -69,8 +69,37 @@ function Users() {
           {isError && <FetchError />}
           {!isError && !isLoading && (
             <Container fluid className="mt-5 pt-5">
-              <Row>
-                <Col className="col-12 col-md-4 mt-4 d-flex flex-column gap-4">
+              <Row className="justify-content-around">
+                {!isClicked && (
+                  <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 h-100">
+                    <h2>Lista utenti</h2>
+                    {users
+                      .slice(2)
+                      .filter((u) =>
+                        u.surname.toLowerCase().includes(search.toLowerCase())
+                      )
+                      .map((u) => {
+                        return <User u={u} key={u.id} token={token!} />
+                      })}
+                  </Col>
+                )}
+                {isClicked && (
+                  <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 h-100">
+                    <h2>Lista utenti</h2>
+                    {users
+                      .slice(2)
+                      .filter((u) =>
+                        isDateBeforeNinetyDaysAgo(Date.parse(u.lastPaymentDate))
+                      )
+                      .filter((u) =>
+                        u.surname.toLowerCase().includes(search.toLowerCase())
+                      )
+                      .map((u) => {
+                        return <User u={u} key={u.id} token={token!} />
+                      })}
+                  </Col>
+                )}
+                <Col className="col-12 col-md-3 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 gap-4 h-100">
                   <h2>Impostazioni</h2>
                   {!isClicked && (
                     <Button
@@ -111,35 +140,6 @@ function Users() {
                     </Form.Group>
                   </Form>
                 </Col>
-                {!isClicked && (
-                  <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
-                    <h2>Lista utenti</h2>
-                    {users
-                      .slice(2)
-                      .filter((u) =>
-                        u.surname.toLowerCase().includes(search.toLowerCase())
-                      )
-                      .map((u) => {
-                        return <User u={u} key={u.id} token={token!} />
-                      })}
-                  </Col>
-                )}
-                {isClicked && (
-                  <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
-                    <h2>Lista utenti</h2>
-                    {users
-                      .slice(2)
-                      .filter((u) =>
-                        isDateBeforeNinetyDaysAgo(Date.parse(u.lastPaymentDate))
-                      )
-                      .filter((u) =>
-                        u.surname.toLowerCase().includes(search.toLowerCase())
-                      )
-                      .map((u) => {
-                        return <User u={u} key={u.id} token={token!} />
-                      })}
-                  </Col>
-                )}
               </Row>
             </Container>
           )}

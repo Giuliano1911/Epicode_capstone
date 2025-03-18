@@ -23,4 +23,8 @@ public class Reservation {
     private Customer customer;
 
     private LocalDate date;
+
+    private String time;
+
+    private String description;
 }

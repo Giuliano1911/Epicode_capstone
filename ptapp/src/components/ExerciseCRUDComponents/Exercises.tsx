@@ -61,8 +61,19 @@ function Exercises() {
           {isError && <FetchError />}
           {!isError && !isLoading && (
             <Container fluid className="mt-5 pt-5">
-              <Row>
-                <Col className="col-12 col-md-4 mt-4 d-flex flex-column gap-4">
+              <Row className="justify-content-around">
+                <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 h-100 gap-3">
+                  <h2>Lista esercizi</h2>
+                  {exercises
+                    .filter((e) =>
+                      e.name.toLowerCase().includes(search.toLowerCase())
+                    )
+                    .filter((e) => e.muscleGroup.includes(muscle))
+                    .map((e) => {
+                      return <Exercise e={e} token={token!} key={e.id} />
+                    })}
+                </Col>
+                <Col className="col-12 col-md-3 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 gap-4 h-100">
                   <h2>Impostazioni</h2>
                   <Link
                     className="text-decoration-none text-black"
@@ -162,17 +173,6 @@ function Exercises() {
                       />
                     </Form.Group>
                   </Form>
-                </Col>
-                <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
-                  <h2>Lista esercizi</h2>
-                  {exercises
-                    .filter((e) =>
-                      e.name.toLowerCase().includes(search.toLowerCase())
-                    )
-                    .filter((e) => e.muscleGroup.includes(muscle))
-                    .map((e) => {
-                      return <Exercise e={e} token={token!} key={e.id} />
-                    })}
                 </Col>
               </Row>
             </Container>

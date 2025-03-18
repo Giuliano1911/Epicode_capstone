@@ -91,8 +91,18 @@ function TrainingWeeks() {
           {isError && <FetchError />}
           {!isError && !isLoading && (
             <Container fluid className="mt-5 pt-5">
-              <Row>
-                <Col className="col-12 col-md-4 mt-4 d-flex flex-column gap-4">
+              <Row className="justify-content-around">
+                <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 h-100 gap-3">
+                  {trainingWeeks[0] ? (
+                    <h2>Schede di {trainingWeeks[0].customerResponse.name}</h2>
+                  ) : (
+                    <h2>Ancora non ci sono schede</h2>
+                  )}
+                  {trainingWeeks.map((t) => {
+                    return <Training t={t} key={t.id} />
+                  })}
+                </Col>
+                <Col className="col-12 col-md-3 d-flex flex-column gap-3 mt-4 bg-body-tertiary rounded-3 py-3 gap-4 h-100">
                   <h2>Impostazioni</h2>
                   <Button
                     className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
@@ -130,16 +140,6 @@ function TrainingWeeks() {
                   >
                     <i className="fas fa-caret-left me-2"></i>Torna indietro
                   </Button>
-                </Col>
-                <Col className="col-12 col-md-8 d-flex flex-column gap-3 mt-4 border-start border-2 border-black">
-                  {trainingWeeks[0] ? (
-                    <h2>Schede di {trainingWeeks[0].customerResponse.name}</h2>
-                  ) : (
-                    <h2>Ancora non ci sono schede</h2>
-                  )}
-                  {trainingWeeks.map((t) => {
-                    return <Training t={t} key={t.id} />
-                  })}
                 </Col>
               </Row>
             </Container>

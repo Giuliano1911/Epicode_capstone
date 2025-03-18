@@ -38,10 +38,13 @@ function User({ u, token }: UserProps) {
     <Card className="rounded-4">
       <Card.Body>
         <Row>
-          <Col className="col-4">
-            <img className="w-75 profileimage" src={u.avatar} />
+          <Col className="col-md-4">
+            <img
+              className="profileimage rounded-circle border object-fit-cover"
+              src={u.avatar}
+            />
           </Col>
-          <Col className="col-8 p-0">
+          <Col className="col-md-8 p-0">
             <Card.Title className="d-flex justify-content-between">
               <div>
                 {u.name} {u.surname}
@@ -90,7 +93,7 @@ function User({ u, token }: UserProps) {
           className="text-decoration-none text-black"
           to={'/trainingWeeks/' + u.id}
         >
-          <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold mt-2">
+          <Button className="submit-button-login rounded-pill border-0 px-4 me-2 fw-bold mt-2">
             Visualizza Schede
           </Button>
         </Link>
@@ -98,7 +101,7 @@ function User({ u, token }: UserProps) {
           className="text-decoration-none text-black"
           to={'/dietWeeks/' + u.id}
         >
-          <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold ms-2 me-2 mt-2">
+          <Button className="submit-button-login rounded-pill border-0 px-4 fw-bold me-2 mt-2">
             Visualizza Dieta
           </Button>
         </Link>
