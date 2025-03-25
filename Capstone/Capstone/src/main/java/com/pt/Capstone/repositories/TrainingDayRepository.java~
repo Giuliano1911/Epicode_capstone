@@ -1,4 +1,0 @@
-package com.pt.Capstone.repositories;
-
-public interface TrainingDayRepository {
-}
