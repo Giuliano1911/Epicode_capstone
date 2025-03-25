@@ -20,6 +20,7 @@ import DietWeeks from './components/DietCRUDComponents/DietWeeks'
 import DietUpdate from './components/DietCRUDComponents/DietUpdate'
 import Dashboard from './components/UserComponents/Dashboard'
 import MyCalendar from './components/CalendarComponents/MyCalendar'
+import ChatRoom from './components/ChatRoom'
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         />
         <Route path="diet/:id" element={<DietUpdate key={Math.random()} />} />
         <Route path="/calendar/:id" element={<MyCalendar />} />
+        <Route path="chat/:id" element={<ChatRoom />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

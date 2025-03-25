@@ -155,8 +155,10 @@ function Dashboard() {
     setWrong(false)
   }
 
-  const handleFileChange = (e) => {
-    formData.append('profile', e.target.files![0])
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      formData.append('profile', e.target.files[0])
+    }
   }
 
   const handlePasswordClick = () => {
@@ -432,7 +434,9 @@ function Dashboard() {
                         type="file"
                         placeholder="Scegi immagine"
                         onChange={(e) => {
-                          handleFileChange(e)
+                          handleFileChange(
+                            e as React.ChangeEvent<HTMLInputElement>
+                          )
                         }}
                       />
                     </Form.Group>

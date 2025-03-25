@@ -1,12 +1,10 @@
 package com.pt.Capstone.controllers;
 
 import com.cloudinary.Cloudinary;
-import com.pt.Capstone.entities.Customer;
 import com.pt.Capstone.requests.*;
 import com.pt.Capstone.responses.AuthResponse;
 import com.pt.Capstone.responses.CustomerResponse;
 import com.pt.Capstone.services.CustomerService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

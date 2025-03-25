@@ -112,6 +112,10 @@ h1 {
   }
 }
 
+.chat {
+  min-height: 400px;
+}
+
 .scale {
   transition: transform 0.1s ease-in-out, box-shadow 0.2s ease-out;
   overflow: hidden;
