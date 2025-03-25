@@ -48,8 +48,10 @@ function MyCalendar() {
 
   const isDateInRange = (dateToCheck: Date) => {
     const today = new Date()
-    const endDate = new Date(today.setDate(today.getDate() + 60))
-    return dateToCheck >= today && dateToCheck <= endDate
+    return (
+      dateToCheck >= today &&
+      dateToCheck <= new Date().setDate(today.getDate() + 60)
+    )
   }
 
   const getAllCustomerReservation = async () => {

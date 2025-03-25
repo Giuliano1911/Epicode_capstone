@@ -290,6 +290,12 @@ function Dashboard() {
                 >
                   Vedi i tuoi appuntamenti
                 </Button>
+                <Button
+                  className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
+                  onClick={() => navigate('/chat/' + params.id)}
+                >
+                  Vai alle chat
+                </Button>
                 {same && (
                   <>
                     <div>

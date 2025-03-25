@@ -1,6 +1,6 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { URL } from '../../config/config'
 
 import UserResponse from '../../types/UserResponse'
@@ -14,6 +14,7 @@ import User from './User'
 function Users() {
   const role = localStorage.getItem('roles')
   const token = localStorage.getItem('token')
+  const navigate = useNavigate()
   const [users, setUsers] = useState<UserResponse[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isError, setIsError] = useState<boolean>(false)
@@ -125,6 +126,12 @@ function Users() {
                       Crea nuovo utente
                     </Button>
                   </Link>
+                  <Button
+                    className="submit-button-login rounded-pill border-0 px-4 fw-bold w-100"
+                    onClick={() => navigate('/chat/2')}
+                  >
+                    Vai alle chat
+                  </Button>
                   <Form>
                     <Form.Group className="mb-3" controlId="formBasicSurname">
                       <Form.Label className="ms-2 fw-bold">
