@@ -1,5 +1,5 @@
 body {
-  font-family: Montserrat;
+  font-family: Roboto, Montserrat, sans-serif !important;
 }
 
 .greentext {
@@ -157,12 +157,57 @@ h1 {
   background-color: #afaafa !important;
 }
 
+.chatbot-popup {
+  width: 420px !important;
+  bottom: 90px;
+  right: 35px;
+}
+
+@media screen and (max-width: 500px) {
+  .chatbot-popup {
+    width: 300px !important;
+  }
+}
+
+.chatbot-header {
+  background-color: greenyellow !important;
+}
+
+.chat-body {
+  height: 400px !important;
+}
+
+.user-message .message {
+  border-radius: 13px 13px 3px 13px !important;
+  background-color: greenyellow;
+  max-width: 70%;
+}
+
+.bot-message .message {
+  border-radius: 13px 13px 13px 3px !important;
+  background-color: rgb(224, 255, 192);
+  max-width: 75%;
+}
+
+.message-input {
+  height: 50px !important;
+  outline: 0;
+}
+
+#chatbot-toggler {
+  background-color: greenyellow !important;
+  bottom: 30px;
+  right: 35px;
+  height: 50px;
+  width: 50px;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #121212;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {

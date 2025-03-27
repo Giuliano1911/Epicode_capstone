@@ -183,7 +183,6 @@ function Dashboard() {
       .then((response) => {
         if (response.ok) {
           formData.delete('profile')
-          console.log(formData)
           return response.json()
         } else {
           throw new Error('no ok')

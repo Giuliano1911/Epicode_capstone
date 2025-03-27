@@ -2,13 +2,14 @@ import { Card, Col, Row, Form, Button } from 'react-bootstrap'
 import { FormEvent, useState } from 'react'
 import Carousel from 'react-multi-carousel'
 
-import pic from '../assets/pt-photo.jpg'
+import pic from '../assets/IMG_7104.jpg'
 import basic from '../assets/basicPlan.png'
 import pro from '../assets/mediumPlan.png'
 import elite from '../assets/superPlan.png'
 
 import Review from './Review'
 import MyFooter from './MyFooter'
+import ChatBot from './ChatBot'
 
 interface InfoRequest {
   email: string
@@ -477,6 +478,7 @@ function HomepageCentralSection() {
           </Form>
         </Col>
       </Row>
+      <ChatBot />
       <Row className=" bg-black">
         <MyFooter />
       </Row>
