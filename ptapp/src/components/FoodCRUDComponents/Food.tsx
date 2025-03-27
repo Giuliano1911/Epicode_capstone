@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router'
-import { Alert, Card } from 'react-bootstrap'
+import { Alert, Button, Card } from 'react-bootstrap'
 import { useState } from 'react'
 import { URL } from '../../config/config'
 
@@ -35,7 +35,7 @@ function Food({ f, token }: FoodProps) {
   }
 
   return (
-    <Card className="rounded-4">
+    <Card className="rounded-4 scale">
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
           <div>{f.name}</div>
@@ -45,28 +45,28 @@ function Food({ f, token }: FoodProps) {
             </Link>
             <button
               className=" border-0 bg-white ms-4"
-              onClick={() => setAlert(true)}
+              onClick={() => setAlert((prev) => !prev)}
             >
               <i className="fas fa-trash-alt text-black"></i>
             </button>
             {alert && (
-              <div>
-                <Alert variant="danger" className="rounded-4 mt-2">
-                  Sei sicuro di volerlo eliminare?
-                </Alert>
-                <button
-                  className="rounded bg-white"
-                  onClick={() => deleteFood()}
-                >
-                  Si
-                </button>
-                <button
-                  className="ms-4 rounded bg-white"
-                  onClick={() => setAlert(false)}
-                >
-                  No
-                </button>
-              </div>
+              <Alert className="rounded-4 mt-2 d-flex flex-column bg-body-tertiary border-dark-subtle text-black">
+                Sei sicuro di volerlo eliminare?
+                <div className="mt-2">
+                  <Button
+                    className="rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                    onClick={() => deleteFood()}
+                  >
+                    Si
+                  </Button>
+                  <Button
+                    className="ms-4 rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                    onClick={() => setAlert(false)}
+                  >
+                    No
+                  </Button>
+                </div>
+              </Alert>
             )}
           </div>
         </Card.Title>

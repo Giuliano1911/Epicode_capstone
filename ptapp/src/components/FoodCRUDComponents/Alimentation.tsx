@@ -82,7 +82,7 @@ function Alimentation() {
                     </Button>
                   </Link>
                   <Form>
-                    <Form.Group className="mb-3" controlId="formBasicUsername">
+                    <Form.Group className="mb-3" controlId="formBasicFoodName">
                       <Form.Label className="ms-2 fw-bold">
                         Cerca alimento per nome
                       </Form.Label>

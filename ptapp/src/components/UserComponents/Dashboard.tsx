@@ -237,14 +237,14 @@ function Dashboard() {
               {isLoadingU && <FetchLoading />}
               {isErrorU && <FetchError />}
               {!isErrorU && !isLoadingU && (
-                <Row className="d-flex align-items-center">
-                  <Col className="col-4 mt-4 d-flex justify-content-center">
+                <Row className="d-flex align-items-center bg-body-tertiary rounded-3 pb-3">
+                  <Col className="col-3 mt-4 d-flex justify-content-center">
                     <img
                       className="profileimage rounded-circle border object-fit-cover"
                       src={user!.avatar}
                     />
                   </Col>
-                  <Col className="col-8 text-end text-md-start">
+                  <Col className="col-9 text-end text-md-start">
                     <h2 className="fs-1">Benvenuto {user!.name}</h2>
                   </Col>
                 </Row>
@@ -298,31 +298,31 @@ function Dashboard() {
                 {same && (
                   <>
                     <div>
-                      <Alert variant="danger">
-                        La vecchia password non può essere uguale a quella nuova
+                      <Alert className="rounded-4 mt-2 d-flex flex-column bg-body-tertiary border-dark-subtle text-black">
+                        La nuova password non può essere uguale a quella vecchia
+                        <Button
+                          className="rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold mt-2"
+                          onClick={() => handleSame()}
+                        >
+                          Ok
+                        </Button>
                       </Alert>
-                      <Button
-                        className="border-black bg-white text-black"
-                        onClick={() => handleSame()}
-                      >
-                        Ok
-                      </Button>
                     </div>
                   </>
                 )}
                 {wrong && (
                   <>
                     <div>
-                      <Alert variant="danger">
+                      <Alert className="rounded-4 mt-2 d-flex flex-column bg-body-tertiary border-dark-subtle text-black">
                         La vecchia password non è corretta, assicurati di non
                         avere CAPS LOCK attivo
+                        <Button
+                          className="rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold mt-2"
+                          onClick={() => handleWrong()}
+                        >
+                          Ok
+                        </Button>
                       </Alert>
-                      <Button
-                        className="border-black bg-white text-black"
-                        onClick={() => handleWrong()}
-                      >
-                        Ok
-                      </Button>
                     </div>
                   </>
                 )}
@@ -387,11 +387,11 @@ function Dashboard() {
                         onClick={() => setVisibility(false)}
                         className={
                           visibility
-                            ? 'bg-white border border-0 d-block'
-                            : 'bg-white border border-0 d-none'
+                            ? ' bg-transparent border border-0 d-block'
+                            : ' bg-transparent border border-0 d-none'
                         }
                       >
-                        <i className="fas fa-eye"></i>
+                        <i className="fas fa-eye me-2"></i>
                         Nascondi le Password
                       </button>
                       <button
@@ -399,11 +399,11 @@ function Dashboard() {
                         onClick={() => setVisibility(true)}
                         className={
                           visibility
-                            ? 'bg-white border border-0 d-none'
-                            : 'bg-white border border-0 d-block'
+                            ? ' bg-transparent border border-0 d-none'
+                            : ' bg-transparent border border-0 d-block'
                         }
                       >
-                        <i className="fas fa-eye-slash"></i>
+                        <i className="fas fa-eye-slash me-2"></i>
                         Mostra le Password
                       </button>
                     </div>

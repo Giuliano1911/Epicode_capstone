@@ -84,7 +84,10 @@ function Exercises() {
                     </Button>
                   </Link>
                   <Form>
-                    <Form.Group className="mb-3" controlId="formBasicUsername">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="formBasicExerciseName"
+                    >
                       <Form.Label className="ms-2 fw-bold">
                         Cerca esercizio per nome
                       </Form.Label>

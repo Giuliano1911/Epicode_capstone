@@ -189,50 +189,22 @@ function ChatRoom() {
               {userData.connected ? (
                 <>
                   <Row className="justify-content-around chat">
-                    <Col className="col-12 col-md-4 mt-5 h-100 bg-body-tertiary rounded-4">
-                      <ul className="list-unstyled d-flex flex-column gap-2 mt-2">
-                        <li
-                          style={{ cursor: 'pointer' }}
-                          className={
-                            tab === 'CHATROOM'
-                              ? 'fw-bold border rounded-2'
-                              : 'border rounded-2'
-                          }
-                          onClick={() => {
-                            setTab('CHATROOM')
-                          }}
-                        >
-                          ChatRoom
-                        </li>
-                        {[...privateChats.keys()].map((name, index) => (
-                          <li
-                            className={
-                              tab === name
-                                ? 'fw-bold border rounded-2'
-                                : 'border rounded-2'
-                            }
-                            onClick={() => {
-                              setTab(name)
-                            }}
-                            key={index}
-                          >
-                            {name}
-                          </li>
-                        ))}
-                      </ul>
-                    </Col>
                     {tab === 'CHATROOM' && (
                       <Col className="col-12 col-md-7 mt-5 h-100 bg-body-tertiary rounded-4 d-flex flex-column justify-content-between chat">
                         <div>
-                          <h3 className="mt-2">ChatRoom</h3>
+                          <h3 className="mt-2 mb-5">ChatRoom</h3>
                           <ul className="list-unstyled d-flex flex-column gap-2 mt-2">
                             {publicChats.map((chat, index) => (
                               <li
                                 key={index}
-                                className="d-flex justify-content-center gap-4"
+                                className={
+                                  chat.senderName === userData.username
+                                    ? 'justify-content-end d-flex gap-2'
+                                    : 'Justify-content-start d-flex gap-2'
+                                }
                               >
                                 {chat.senderName !== userData.username && (
-                                  <div className="bg-white rounded-pill border-0 px-4">
+                                  <div className="bg-black greentext rounded-pill border-0 px-4">
                                     {chat.senderName}
                                   </div>
                                 )}

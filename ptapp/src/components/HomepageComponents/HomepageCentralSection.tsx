@@ -83,7 +83,7 @@ function HomepageCentralSection() {
           </h5>
           <div className=" d-flex justify-content-center">
             <img
-              className=" w-75"
+              className=" w-75 rounded-3"
               src={pic}
               alt="Giuliano Torres's photo at the gym"
             />
@@ -108,7 +108,7 @@ function HomepageCentralSection() {
             </p>
           </div>
         </Col>
-        <Col className="col-12 col-md-6">
+        <Col className="col-12 col-md-6 pe-5">
           <h5 className=" text-uppercase text-center my-5">
             A chi è consigliato il coaching online
           </h5>
@@ -135,7 +135,7 @@ function HomepageCentralSection() {
           <h5 className="text-uppercase text-center my-5">
             Quali sono i tuoi obiettivi?
           </h5>
-          <div className=" mx-5 m-md-0">
+          <div className="mx-5 m-md-0">
             <p>
               Negli anni mi sono specializzato nell’allenamento della{' '}
               <strong>forza</strong> e dell’
@@ -162,7 +162,7 @@ function HomepageCentralSection() {
       <Row id="presentation" className="mt-5">
         <Col className="col-12 col-lg-6 px-5">
           <h5 className="pt-5 pb-0 text-uppercase">Chi sono</h5>
-          <h2 className="pb-4 fs-1">Giuliano Torres</h2>
+          <h2 className="pb-2 fs-1">Giuliano Torres</h2>
           <div className="pb-4">
             <p>
               Ho sempre avuto un grande interesse per lo{' '}
@@ -195,7 +195,7 @@ function HomepageCentralSection() {
           </h4>
         </Col>
         <Col className="col-12 col-lg-4 mb-5 mb-lg-0">
-          <Card className=" p-3 mx-4 h-100 rounded-4">
+          <Card className=" p-3 mx-4 h-100 rounded-4 scale">
             <Card.Img
               className="rounded-4"
               src={basic}
@@ -240,7 +240,7 @@ function HomepageCentralSection() {
           </Card>
         </Col>
         <Col className="col-12 col-lg-4  mb-5 mb-lg-0">
-          <Card className=" p-3 mx-4 h-100 rounded-4">
+          <Card className=" p-3 mx-4 h-100 rounded-4 scale">
             <Card.Img className="rounded-4" src={pro} alt="pro plan picture" />
             <Card.Body>
               <Card.Title className="fs-3 my-3">Pro Plan</Card.Title>
@@ -276,7 +276,7 @@ function HomepageCentralSection() {
           </Card>
         </Col>
         <Col className="col-12 col-lg-4 ">
-          <Card className=" p-3 mx-4 h-100 rounded-4">
+          <Card className=" p-3 mx-4 h-100 rounded-4 scale">
             <Card.Img
               className="rounded-4"
               src={elite}

@@ -191,8 +191,9 @@ function MyCalendar() {
       {isError && <FetchError />}
       {!isError && !isLoading && (
         <Container fluid className="mt-5 pt-5">
-          <Row>
-            <Col className="col-12 mt-4">
+          <div className="mt-4"></div>
+          <Row className="justify-content-center bg-body-tertiary pb-4 mx-2 rounded-4">
+            <Col className="col-11 mt-4">
               {role!.includes('CUSTOMER') && (
                 <>
                   <Calendar
@@ -212,12 +213,12 @@ function MyCalendar() {
               )}
             </Col>
           </Row>
-          <Row>
-            <Col className="mt-4">
+          <Row className="justify-content-center">
+            <Col className="mt-4 col-11">
               {isReserved && role!.includes('CUSTOMER') && (
                 <>
                   <h3>Hai una prenotazione:</h3>
-                  <Card className="rounded-4">
+                  <Card className="rounded-4 scale">
                     <Card.Body>
                       <Card.Title className="d-flex justify-content-between">
                         <div>
@@ -225,29 +226,29 @@ function MyCalendar() {
                         </div>
                         <button
                           className=" border-0 bg-white ms-4"
-                          onClick={() => setAlert(true)}
+                          onClick={() => setAlert((prev) => !prev)}
                         >
                           <i className="fas fa-trash-alt text-black h-100"></i>
                         </button>
                       </Card.Title>
                       {alert && (
-                        <div>
-                          <Alert variant="danger" className="rounded-4 mt-2">
-                            Sei sicuro di volerla eliminare?
-                          </Alert>
-                          <button
-                            className="rounded bg-white"
-                            onClick={() => deleteRes(userReservation!.id)}
-                          >
-                            Si
-                          </button>
-                          <button
-                            className="ms-4 rounded bg-white"
-                            onClick={() => setAlert(false)}
-                          >
-                            No
-                          </button>
-                        </div>
+                        <Alert className="rounded-4 mt-2 d-flex flex-column bg-body-tertiary border-dark-subtle text-black">
+                          Sei sicuro di volerla eliminare?
+                          <div className="mt-2">
+                            <Button
+                              className="rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                              onClick={() => deleteRes(userReservation!.id)}
+                            >
+                              Si
+                            </Button>
+                            <Button
+                              className="ms-4 rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                              onClick={() => setAlert(false)}
+                            >
+                              No
+                            </Button>
+                          </div>
+                        </Alert>
                       )}
                     </Card.Body>
                   </Card>
@@ -308,11 +309,11 @@ function MyCalendar() {
                     </>
                   )}
                   {role!.includes('PERSONALTRAINER') && dateReservations[0] && (
-                    <>
-                      <h3 className="mt-4">Appuntamenti di oggi:</h3>
+                    <div className="bg-body-tertiary p-3 rounded-4 mt-2">
+                      <h3 className="mt-2">Appuntamenti di oggi:</h3>
                       {dateReservations.map((d) => {
                         return (
-                          <Card key={d.id} className="rounded-4 mb-3 ">
+                          <Card key={d.id} className="rounded-4 mb-3 scale ">
                             <Card.Body>
                               <Card.Title className="d-flex justify-content-between">
                                 <div>
@@ -336,7 +337,7 @@ function MyCalendar() {
                           </Card>
                         )
                       })}
-                    </>
+                    </div>
                   )}
                 </>
               )}

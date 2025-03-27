@@ -13,7 +13,7 @@ interface DietDayProps {
 function DietDay({ d, foods }: DietDayProps) {
   return (
     <Col className="col-12 col-md-6 mb-4">
-      <Card className="rounded-4 h-100">
+      <Card className="rounded-4 h-100 border-0 bg-body-tertiary">
         <Card.Body>
           <Card.Title className="d-flex justify-content-between fs-2">
             {d.day}

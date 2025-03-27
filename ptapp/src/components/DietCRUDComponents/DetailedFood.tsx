@@ -73,6 +73,16 @@ function DetailedFood({ df, foods, token, role }: DetailedFoodProps) {
     navigate(0)
   }
 
+  const handleMod = () => {
+    setIsMod((prev) => !prev)
+    setAlert(false)
+  }
+
+  const handleAlert = () => {
+    setAlert((prev) => !prev)
+    setIsMod(false)
+  }
+
   return (
     <Card className="rounded-3 mb-2">
       <Card.Body>
@@ -80,36 +90,33 @@ function DetailedFood({ df, foods, token, role }: DetailedFoodProps) {
           {df.food.name}
           {role!.includes('PERSONALTRAINER') && (
             <div className="text-end">
-              <button
-                className="border-0 bg-white"
-                onClick={() => setIsMod(true)}
-              >
+              <button className="border-0 bg-white" onClick={() => handleMod()}>
                 <i className="fas fa-pencil-alt text-black"></i>
               </button>
               <button
                 className="border-0 bg-white ms-2"
-                onClick={() => setAlert(true)}
+                onClick={() => handleAlert()}
               >
                 <i className="fas fa-trash-alt text-black"></i>
               </button>
               {alert && (
-                <div>
-                  <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
-                    Sei sicuro di volerlo eliminare?
-                  </Alert>
-                  <button
-                    className="rounded bg-white"
-                    onClick={() => deleteDetailedFood()}
-                  >
-                    Si
-                  </button>
-                  <button
-                    className="ms-4 rounded bg-white"
-                    onClick={() => setAlert(false)}
-                  >
-                    No
-                  </button>
-                </div>
+                <Alert className="rounded-4 mt-2 d-flex flex-column bg-body-tertiary border-dark-subtle border-dark-subtle text-black">
+                  Sei sicuro di volerlo eliminare?
+                  <div className="mt-2">
+                    <Button
+                      className="rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                      onClick={() => deleteDetailedFood()}
+                    >
+                      Si
+                    </Button>
+                    <Button
+                      className="ms-4 rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                      onClick={() => setAlert(false)}
+                    >
+                      No
+                    </Button>
+                  </div>
+                </Alert>
               )}
             </div>
           )}

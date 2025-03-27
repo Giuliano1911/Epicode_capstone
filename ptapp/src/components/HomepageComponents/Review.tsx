@@ -10,7 +10,7 @@ interface ReviewProps {
 
 function Review({ name, text, rating }: ReviewProps) {
   return (
-    <Card className="m-3 rounded-4">
+    <Card className="m-3 rounded-4 bg-body-tertiary">
       <Card.Body>
         <div className=" d-flex justify-content-between">
           <div className=" d-flex">

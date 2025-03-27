@@ -8,7 +8,7 @@ interface TrainigUserProps {
 
 function TrainingUserList({ t }: TrainigUserProps) {
   return (
-    <Card className="rounded-4">
+    <Card className="rounded-4 scale">
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
           <div>{t.name}</div>

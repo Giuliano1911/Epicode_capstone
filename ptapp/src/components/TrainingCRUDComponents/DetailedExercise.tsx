@@ -82,6 +82,16 @@ function DetailedExercise({
     navigate(0)
   }
 
+  const handleMod = () => {
+    setIsMod((prev) => !prev)
+    setAlert(false)
+  }
+
+  const handleAlert = () => {
+    setAlert((prev) => !prev)
+    setIsMod(false)
+  }
+
   return (
     <Card className={e.exercise.muscleGroup + ' rounded-3 mb-2'}>
       <Card.Body>
@@ -91,34 +101,34 @@ function DetailedExercise({
             <div className="text-end">
               <button
                 className={e.exercise.muscleGroup + ' border-0 bg-white'}
-                onClick={() => setIsMod(true)}
+                onClick={() => handleMod()}
               >
                 <i className="fas fa-pencil-alt text-black"></i>
               </button>
               <button
                 className={e.exercise.muscleGroup + ' border-0 bg-white ms-2'}
-                onClick={() => setAlert(true)}
+                onClick={() => handleAlert()}
               >
                 <i className="fas fa-trash-alt text-black"></i>
               </button>
               {alert && (
-                <div>
-                  <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
-                    Sei sicuro di volerlo eliminare?
-                  </Alert>
-                  <button
-                    className="rounded bg-white"
-                    onClick={() => deleteDetailedEx()}
-                  >
-                    Si
-                  </button>
-                  <button
-                    className="ms-4 rounded bg-white"
-                    onClick={() => setAlert(false)}
-                  >
-                    No
-                  </button>
-                </div>
+                <Alert className="rounded-4 mt-2 d-flex flex-column border-0 bg-transparent border-dark-subtle text-black">
+                  Sei sicuro di volerlo eliminare?
+                  <div className="mt-2">
+                    <Button
+                      className="rounded bg-black greentext button-width border-0 rounded-pill py-1 fw-bold"
+                      onClick={() => deleteDetailedEx()}
+                    >
+                      Si
+                    </Button>
+                    <Button
+                      className="ms-4 rounded bg-black greentext button-width border-0 rounded-pill py-1 fw-bold"
+                      onClick={() => setAlert(false)}
+                    >
+                      No
+                    </Button>
+                  </div>
+                </Alert>
               )}
             </div>
           )}

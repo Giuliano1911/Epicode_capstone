@@ -280,7 +280,10 @@ function UpdateOrCreateExercise() {
                 {isError && <FetchError />}
                 {!isError && !isLoading && (
                   <Form onSubmit={handleSubmit1} className="mt-5">
-                    <Form.Group className="mb-3" controlId="formBasicExName">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="formBasicExerciseName"
+                    >
                       <Form.Label className=" text-uppercase ms-2 fw-bold">
                         * Nome esercizio
                       </Form.Label>

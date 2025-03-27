@@ -63,7 +63,7 @@ function Meal({ d, m, foods }: DietDayProps) {
   }
 
   return (
-    <Card className=" border-bottom-0 border-start-0 border-end-0 border-top border-2 rounded-0 py-2">
+    <Card className=" border-bottom-0 border-start-0 border-end-0 border-top border-2 rounded-0 py-2  bg-body-tertiary">
       <Card.Title className=" d-flex justify-content-between">
         {m.name}
         <div>
@@ -87,7 +87,7 @@ function Meal({ d, m, foods }: DietDayProps) {
       })}
       {role!.includes('PERSONALTRAINER') && (
         <button
-          className="d-flex align-items-center border-0 bg-white"
+          className="d-flex align-items-center border-0  bg-body-tertiary"
           onClick={() => {
             setIsAdd(true)
           }}

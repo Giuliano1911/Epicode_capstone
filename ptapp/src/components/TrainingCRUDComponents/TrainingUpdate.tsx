@@ -110,10 +110,10 @@ function TrainingUpdate() {
       {!isError && !isLoading && (
         <Container fluid className="mt-5 pt-5">
           <Row className=" justify-content-center">
-            <Col className=" col-12 text-center mt-3">
-              <h2>{trainingWeek!.name}</h2>
+            <Col className=" col-12 text-center py-5 bg-body-tertiary">
+              <h2 className="fs-1 text-uppercase ">{trainingWeek!.name}</h2>
             </Col>
-            <Col className=" col-12 d-flex gap-2 mb-3 flex-wrap">
+            <Col className=" col-12 d-flex gap-2 my-3 flex-wrap">
               <button className="pettorali rounded-pill border-0 px-2 py-1">
                 Pettorali
               </button>
@@ -156,29 +156,29 @@ function TrainingUpdate() {
               })}
               <Col className=" col-12 mb-3">
                 {alert && (
-                  <div className=" col-12 col-md-4 ms-2">
-                    <Alert className="rounded-4 mt-2 text-start bg-white border-2 border-black">
-                      Sei sicuro di volerla eliminare?
-                    </Alert>
-                    <button
-                      className="rounded bg-white"
-                      onClick={() => deleteTrainingWeek()}
-                    >
-                      Si
-                    </button>
-                    <button
-                      className="ms-4 rounded bg-white"
-                      onClick={() => setAlert(false)}
-                    >
-                      No
-                    </button>
-                  </div>
+                  <Alert className="rounded-4 mt-2 d-flex flex-column bg-body-tertiary border-dark-subtle text-black fw-bold">
+                    Sei sicuro di volerlo eliminare?
+                    <div className="mt-2">
+                      <Button
+                        className="rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                        onClick={() => deleteTrainingWeek()}
+                      >
+                        Si
+                      </Button>
+                      <Button
+                        className="ms-4 rounded submit-button-login button-width border-0 rounded-pill py-1 fw-bold"
+                        onClick={() => setAlert(false)}
+                      >
+                        No
+                      </Button>
+                    </div>
+                  </Alert>
                 )}
                 {role!.includes('PERSONALTRAINER') && (
                   <>
                     <Button
-                      className="rounded-pill bg-danger border text-black mt-2 text-uppercase ms-2"
-                      onClick={() => setAlert(true)}
+                      className="rounded-pill submit-button-bw bg-black greentext text-black mt-2 text-uppercase ms-2"
+                      onClick={() => setAlert((prev) => !prev)}
                     >
                       Elimina scheda
                     </Button>
