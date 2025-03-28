@@ -3,6 +3,7 @@
 Questo progetto nasce dalla mia passione per il bodybuilding e dall'esigenza di avere uno strumento semplice e intuitivo per pianificare gli allenamenti e le diete dei clienti.
 
 Repository front-end: [https://github.com/Giuliano1911/Epicode_capstone](https://github.com/Giuliano1911/Epicode_capstone)
+
 Repository back-end: [https://github.com/Giuliano1911/progetto_finale_backend](https://github.com/Giuliano1911/progetto_finale_backend)
 
 ## Funzionalità
