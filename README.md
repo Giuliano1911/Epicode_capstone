@@ -25,10 +25,15 @@ Gli utenti invece possono:
 ## Tecnologie utilizzate
 
 · Frontend: React Typescript, Bootstrap
+
 · Backend: Spring Boot
+
 · Autenticazione: JWT
+
 · ChatBot: AI Gemini 2.0 flash
+
 · ChatRoom: spring-boot-starter-websocket + SockJs e StompJs
+
 · Database: PostgreSQL
 
 Nella homepage è presente un ChatBot realizzato con AI Gemini 2.0 flash "trainata" a rispondere solo alle domande pertinenti ai servizi offerti dal PT.
