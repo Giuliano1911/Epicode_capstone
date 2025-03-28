@@ -22,6 +22,7 @@ Il PT può creare schede di allenamento e diete per i suoi clienti, inoltre può
 
 · partecipare alla chat di gruppo
 
+
 Gli utenti invece possono:
 
 · vedere le schede e diete del PT
